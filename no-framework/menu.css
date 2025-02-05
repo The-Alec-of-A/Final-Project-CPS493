@@ -1,0 +1,18 @@
+.navbar {
+    background-color: green;
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar-item {
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+.navbar-item:hover {
+    background-color: darkgreen;
+}
