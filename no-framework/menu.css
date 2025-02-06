@@ -27,7 +27,6 @@ li a, .dropbtn {
 
 li.dropdown {
     display: inline-block;
-    position: none;
 }
 
 li a:hover, .dropdown:hover .dropbtn {
