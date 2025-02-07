@@ -1,8 +1,8 @@
 <html>
     <head>
     <link rel="stylesheet" href="menu.css">
-    <style>
-        </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Menu Example (reproduction)</title>
     </head>
     <body>
@@ -50,6 +50,13 @@
             document.getElementById('edit-link').addEventListener('click', function(event) {
                 event.preventDefault();
                 this.parentElement.classList.toggle('dropdown-open');
+            });
+
+            document.addEventListener('click', function(event) {
+                var editDropdown = document.getElementById('edit-link').parentElement;
+                if (!editDropdown.contains(event.target) && editDropdown.classList.contains('dropdown-open')) {
+                    editDropdown.classList.remove('dropdown-open');
+                }
             });
         </script>
     </body>
