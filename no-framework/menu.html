@@ -41,10 +41,21 @@
                     <a href="#">Fit Width</a>
                     <a href="#">Fit Height</a>
                     <a href="#">Rotate Left</a>
-                    <a href="#">Rotate Right</a>
-                    <a href="#">Full Screen</a>
+                    <a href="#">Rotate <br/>Right</a>
+                    <a href="#">Full <br/>Screen </a>
             </div>
             </li>
         </ul>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const editDropdown = document.querySelector('.navbar-item.has-dropdown');
+                const editButton = editDropdown.querySelector('.navbar-link');
+    
+                editButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    editDropdown.classList.toggle('dropdown-open');
+                });
+            });
+        </script>
     </body>
 </html>
