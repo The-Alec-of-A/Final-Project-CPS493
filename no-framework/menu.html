@@ -18,7 +18,7 @@
             </div>
             </li>
 
-            <li class="dropdown">
+            <li class="dropdown" id="edit-dropdown">
             <a href="javascript:void(0)" class="dropbtn" id="edit-link">Edit</a>
                 <div class="dropdown-content">
                     <a href="#">Undo</a>
@@ -47,16 +47,15 @@
             </li>
         </ul>
         <script>
-            document.getElementById('edit-link').addEventListener('click', function(event) {
-                event.preventDefault();
-                this.parentElement.classList.toggle('dropdown-open');
+            document.addEventListener('click', function(event) {
+                var dropdown = document.getElementById('edit-dropdown');
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove('open');
+                }
             });
 
-            document.addEventListener('click', function(event) {
-                var editDropdown = document.getElementById('edit-link').parentElement;
-                if (!editDropdown.contains(event.target) && editDropdown.classList.contains('dropdown-open')) {
-                    editDropdown.classList.remove('dropdown-open');
-                }
+            document.getElementById('edit-dropdown').addEventListener('click', function(event) {
+                this.classList.toggle('open');
             });
         </script>
     </body>

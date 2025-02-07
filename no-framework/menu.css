@@ -72,10 +72,12 @@ li a:hover, .dropdown:hover .dropbtn {
     display: block;
 }
 
-.close {
-    background: red;
+#edit-dropdown .dropdown-content {
+    display: none;
+}
+
+#edit-dropdown.open .dropdown-content {
     display: block;
-    margin-top: 10px;
 }
 
 nav {
