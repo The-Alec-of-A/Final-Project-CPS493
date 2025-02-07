@@ -64,12 +64,18 @@ li a:hover, .dropdown:hover .dropbtn {
     display: block;
 }
 
-#edit-dropdown .dropdown-content {
+#edit-dropdown:target {
     display: none;
 }
 
 #edit-dropdown.open .dropdown-content {
     display: block;
+}
+
+.close {
+    background: red;
+    display: block;
+    margin-top: 10px;
 }
 
 nav {

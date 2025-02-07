@@ -19,7 +19,7 @@
             </li>
 
             <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Edit</a>
+            <a href="javascript:void(0)" class="dropbtn" id="edit-link">Edit</a>
                 <div class="dropdown-content">
                     <a href="#">Undo</a>
                     <a href="#">Redo</a>
@@ -46,5 +46,11 @@
             </div>
             </li>
         </ul>
+        <script>
+            document.getElementById('edit-link').addEventListener('click', function(event) {
+                event.preventDefault();
+                this.parentElement.classList.toggle('dropdown-open');
+            });
+        </script>
     </body>
 </html>
