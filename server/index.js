@@ -1,16 +1,16 @@
 // Load the http module to create an http server.
-const http = require('http')
+const express = require('express');
 const PORT = 8000
 
-// Configure our HTTP server to respond with Hello World to all requests.
-const server = http.createServer((request, response) => {
-  response.writeHead(200, { 'Content-Type': 'text/plain' });
-  response.end('Hello World\n');
-});
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello New Paltz, NY!!!\n');
+})
 
 // Listen on port 8000, IP defaults to
 //
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`);
 });
 
