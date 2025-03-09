@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 
 const notifications = ref([
-  { test: 'This is a primary notification #1', type: 'success' },
-  { test: 'This is a primary notification #2', type: 'warning' },
-  { test: 'This is a primary notification #3', type: 'danger' },
-  { test: 'This is a primary notification #4', type: 'info' },
+  { text: 'This is a primary notification #1', type: 'success' },
+  { text: 'This is a primary notification #2', type: 'warning' },
+  { text: 'This is a primary notification #3', type: 'danger' },
+  { text: 'This is a primary notification #4', type: 'info' },
 ])
 
 function removeNotification(index: number) {
@@ -18,11 +18,11 @@ function removeNotification(index: number) {
     <div
       v-for="(message, index) in notifications"
       :key="index"
-      class="notification"
-      :class="message.type"
+      class="notification is-light"
+      :class="`is-${message.type}`"
     >
       <button class="delete" @click="removeNotification(index)"></button>
-      {{ message.test }}
+      {{ message.text }}
     </div>
   </div>
 </template>
