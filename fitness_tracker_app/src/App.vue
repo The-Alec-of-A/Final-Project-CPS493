@@ -4,14 +4,12 @@ import NavBar from './components/NavBar.vue'
 </script>
 
 <template>
-  <header>
+  <div id="app">
     <NavBar />
-  </header>
-
-  <div class="container body-container">
-    <RouterView />
+    <router-view />
   </div>
 </template>
+
 <style>
 body {
   background-color: aliceblue;
