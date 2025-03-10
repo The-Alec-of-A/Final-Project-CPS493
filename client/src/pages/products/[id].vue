@@ -1,5 +1,4 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-
 <script setup lang="ts">
 import { getOne } from '@/models/products'
 import { useRoute } from 'vue-router'

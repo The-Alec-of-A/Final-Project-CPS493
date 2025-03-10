@@ -1,4 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+
 <script setup lang="ts">
 import { getAll, type Product } from '@/models/products'
 
