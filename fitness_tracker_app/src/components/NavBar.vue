@@ -3,16 +3,16 @@ import { ref } from 'vue'
 
 const isActive = ref(false)
 const isDropdownActive = ref(false)
+const usernames = null
 </script>
 
 <template>
   <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://vitejs.dev/">
+        <RouterLink class="navbar-item" to="/">
           <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" />
-        </a>
-z
+        </RouterLink>
         <a
           role="button"
           class="navbar-burger"
@@ -30,7 +30,7 @@ z
 
       <div class="navbar-menu" :class="{ 'is-active': isActive }">
         <div class="navbar-start">
-          <RouterLink to="/my-activity" class="navbar-item">
+          <RouterLink to="/my_activity" class="navbar-item">
             <span class="icon">
               <i class="fas fa-running"></i>
             </span>
@@ -66,31 +66,35 @@ z
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="field is-grouped">
-              <RouterLink to="/sign-up" class="button" href="#signup" style="background: transparent; border: none; box-shadow: none; color: black;">
-                <span>Sign Up</span>
-              </RouterLink>
-            <p class="control">
-              <div class="dropdown" :class="{ 'is-active': isDropdownActive }">
-                <div class="dropdown-trigger">
-                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click="isDropdownActive = !isDropdownActive">
-                    <span>Login</span>
-                    <span class="icon is-small">
-                      <i class="fas fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                  </button>
-                </div>
-                <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                  <div class="dropdown-content">
-                    <a href="#" class="dropdown-item">
-                      Login
-                    </a>
-                    <a href="#" class="dropdown-item">
-                      Register
-                    </a>
-                  </div>
+            <RouterLink
+              to="/sign-up"
+              class="button"
+              style="background: transparent; border: none; box-shadow: none; color: black"
+            >
+              Sign Up
+            </RouterLink>
+            <div class="dropdown" :class="{ 'is-active': isDropdownActive }">
+              <div class="dropdown-trigger">
+                <button
+                  class="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                  @click="isDropdownActive = !isDropdownActive"
+                >
+                  <span>Login</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a v-for="username in usernames" :key="username" href="#" class="dropdown-item">
+                    {{ username }}
+                  </a>
                 </div>
               </div>
-            </p>
+            </div>
             <p class="control">
               <a
                 class="bd-tw-button button"
@@ -113,4 +117,46 @@ z
   </nav>
 </template>
 
-<style scoped></style>
+<style scoped>
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
