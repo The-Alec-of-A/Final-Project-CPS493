@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 const isActive = ref(false)
+const isDropdownActive = ref(false)
 </script>
 
 <template>
@@ -11,7 +12,7 @@ const isActive = ref(false)
         <a class="navbar-item" href="https://vitejs.dev/">
           <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" />
         </a>
-        z
+z
         <a
           role="button"
           class="navbar-burger"
@@ -65,13 +66,30 @@ const isActive = ref(false)
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="field is-grouped">
+              <RouterLink to="/sign-up" class="button" href="#signup" style="background: transparent; border: none; box-shadow: none; color: black;">
+                <span>Sign Up</span>
+              </RouterLink>
             <p class="control">
-              <a class="button is-primary" href="#login">
-                <span class="icon">
-                  <i class="fas fa-sign-in-alt"></i>
-                </span>
-                <span>Log In</span>
-              </a>
+              <div class="dropdown" :class="{ 'is-active': isDropdownActive }">
+                <div class="dropdown-trigger">
+                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" @click="isDropdownActive = !isDropdownActive">
+                    <span>Login</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                  <div class="dropdown-content">
+                    <a href="#" class="dropdown-item">
+                      Login
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      Register
+                    </a>
+                  </div>
+                </div>
+              </div>
             </p>
             <p class="control">
               <a
