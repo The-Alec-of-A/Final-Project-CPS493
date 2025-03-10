@@ -11,7 +11,7 @@ const isActive = ref(false)
         <a class="navbar-item" href="https://vitejs.dev/">
           <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" />
         </a>
-
+        z
         <a
           role="button"
           class="navbar-burger"
@@ -65,6 +65,14 @@ const isActive = ref(false)
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="field is-grouped">
+            <p class="control">
+              <a class="button is-primary" href="#login">
+                <span class="icon">
+                  <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>Log In</span>
+              </a>
+            </p>
             <p class="control">
               <a
                 class="bd-tw-button button"
