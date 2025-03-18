@@ -62,48 +62,57 @@ const isActive = ref(false)
               <a class="navbar-item" href="#admin">Users</a>
             </div>
           </div>
+          z
         </div>
 
         <div class="navbar-end" style="display: flex; align-items: center">
-          <div class="field is-grouped">
-            <RouterLink to="/sign-up" class="button is-primary"> Sign Up </RouterLink>
-            <div class="dropdown" :class="{ 'is-active': isDropdownActive }">
-              <div class="dropdown-trigger">
-                <button
-                  class="button"
-                  aria-haspopup="true"
-                  aria-controls="dropdown-menu"
-                  @click="isDropdownActive = !isDropdownActive"
-                >
-                  <span>Log in</span>
-                  <span class="icon is-small">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </div>
-              <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                  <a v-for="username in usernames" :key="username" href="#" class="dropdown-item">
-                    {{ username }}
-                  </a>
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <RouterLink
+                to="/sign-up"
+                class="button"
+                style="background: transparent; border: none; box-shadow: none; color: black"
+              >
+                Sign Up
+              </RouterLink>
+              <div class="dropdown" :class="{ 'is-active': isDropdownActive }">
+                <div class="dropdown-trigger">
+                  <button
+                    class="button"
+                    aria-haspopup="true"
+                    aria-controls="dropdown-menu"
+                    @click="isDropdownActive = !isDropdownActive"
+                  >
+                    <span>Log in</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                  <div class="dropdown-content">
+                    <a v-for="username in usernames" :key="username" href="#" class="dropdown-item">
+                      {{ username }}
+                    </a>
+                  </div>
                 </div>
               </div>
+              <p class="control">
+                <a
+                  class="bd-tw-button button"
+                  data-social-network="Twitter"
+                  data-social-action="tweet"
+                  data-social-target="https://bulma.io"
+                  target="_blank"
+                  href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms"
+                >
+                  <span class="icon">
+                    <i class="fab fa-twitter"></i>
+                  </span>
+                  <span> Tweet </span>
+                </a>
+              </p>
             </div>
-            <p class="control">
-              <a
-                class="bd-tw-button button"
-                data-social-network="Twitter"
-                data-social-action="tweet"
-                data-social-target="https://bulma.io"
-                target="_blank"
-                href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms"
-              >
-                <span class="icon">
-                  <i class="fab fa-twitter"></i>
-                </span>
-                <span> Tweet </span>
-              </a>
-            </p>
           </div>
         </div>
       </div>
@@ -142,5 +151,9 @@ const isActive = ref(false)
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
+}
+
+.button:hover {
+  outline: 2px solid darkblue;
 }
 </style>

@@ -13,8 +13,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "bulma": "^1.0.3",
+    "client": "file:",
+    "pnpm": "^10.6.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
@@ -26,7 +28,6 @@
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.4.0",
     "@vue/tsconfig": "^0.7.0",
-    "@vueuse/core": "^12.8.2",
     "eslint": "^9.20.1",
     "eslint-plugin-vue": "^9.32.0",
     "jiti": "^2.4.2",
