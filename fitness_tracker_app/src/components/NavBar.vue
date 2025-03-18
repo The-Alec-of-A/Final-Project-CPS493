@@ -61,7 +61,6 @@ const usernames = null
             </div>
           </div>
         </div>
-      </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
