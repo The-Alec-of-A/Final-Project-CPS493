@@ -12,7 +12,7 @@ function checkUsername() {
 </script>
 
 <template>
-  <div class="container">
+  <div class="signup-container">
     <div class="form-group">
       <span v-if="usernameExists" class="warning"
         >Username already exists. Please try again.<br
@@ -25,7 +25,7 @@ function checkUsername() {
 </template>
 
 <style scoped>
-.container {
+.signup-container {
   display: flex;
   justify-content: center;
   align-items: center;

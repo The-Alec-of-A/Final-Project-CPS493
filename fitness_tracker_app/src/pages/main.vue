@@ -1,7 +1,6 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import WeightStats from '@/components/WeightStats.vue'
 import AddExercise from '@/components/AddExercise.vue'
-import CardioStats from '../components/CardioStats.vue'
 import UserPosts from '@/components/UserPosts.vue'
 import { currentUser } from '@/components/UserList.vue'
 </script>
@@ -13,7 +12,7 @@ import { currentUser } from '@/components/UserList.vue'
         <AddExercise />
       </div>
       <div class="column is-half">
-        <div class="container py-3" v-for="post in currentUser?.posts">
+        <div class="container py-3" v-for="post in currentUser?.posts" :key="post.id">
           <UserPosts :post="post">
             <WeightStats v-if="post.summary.type === 'weight'" :data="post.summary"> </WeightStats>
             <CardioStats v-else :data="post.summary"> </CardioStats>
