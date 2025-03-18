@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 // ...existing code...
 
@@ -9,7 +9,5 @@ mongoose.connect('mongodb://localhost:27017/fitness_tracker', {
 })
 
 // ...existing code...
-
-const User = require('./models/user')
 
 // ...existing code...

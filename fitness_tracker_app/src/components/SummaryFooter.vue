@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Post } from '@/models/user-posts'
 import type { Summary } from '@/models/summary'
 import { ref, defineProps } from 'vue'
 import { currentUser } from './UserList.vue'

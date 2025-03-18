@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt')
-const User = require('./models/user')
+import bcrypt from 'bcrypt'
+import User from './models/user'
 
 async function verifyPassword(plainPassword, hashedPassword) {
   return await bcrypt.compare(plainPassword, hashedPassword)

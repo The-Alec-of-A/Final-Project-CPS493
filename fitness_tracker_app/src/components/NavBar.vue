@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const usernames = ref(['user1', 'user2', 'user3'])
+const usernames = ref(['John Smith', 'Jane Doe', 'Alec Arza'])
 const isDropdownActive = ref(false)
 const isActive = ref(false)
+const selectedUsername = ref('')
 
-// Method to add a new username
+// Method to handle username selection
+const selectUsername = (username: string) => {
+  selectedUsername.value = username
+  isDropdownActive.value = false
+}
+
+// Method to handle logging out
+const logout = () => {
+  selectedUsername.value = ''
+}
 </script>
 
 <template>
@@ -38,12 +48,12 @@ const isActive = ref(false)
             </span>
             My Activity
           </RouterLink>
-          <a class="navbar-item" href="#statistics">
+          <RouterLink to="/stats" class="navbar-item">
             <span class="icon">
               <i class="fas fa-chart-line"></i>
             </span>
             Statistics
-          </a>
+          </RouterLink>
           <a class="navbar-item" href="#friends-activity">
             <span class="icon">
               <i class="fas fa-users"></i>
@@ -62,20 +72,28 @@ const isActive = ref(false)
               <a class="navbar-item" href="#admin">Users</a>
             </div>
           </div>
-          z
         </div>
 
         <div class="navbar-end" style="display: flex; align-items: center">
           <div class="navbar-item">
             <div class="field is-grouped">
+              <span v-if="selectedUsername" class="selected-username">
+                <img src="@/assets/blank-pfp.png" class="profile-picture" />
+                {{ selectedUsername }}
+              </span>
               <RouterLink
+                v-else
                 to="/sign-up"
                 class="button"
                 style="background: transparent; border: none; box-shadow: none; color: black"
               >
                 Sign Up
               </RouterLink>
-              <div class="dropdown" :class="{ 'is-active': isDropdownActive }">
+              <div
+                class="dropdown"
+                :class="{ 'is-active': isDropdownActive }"
+                v-if="!selectedUsername"
+              >
                 <div class="dropdown-trigger">
                   <button
                     class="button"
@@ -91,12 +109,26 @@ const isActive = ref(false)
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                   <div class="dropdown-content">
-                    <a v-for="username in usernames" :key="username" href="#" class="dropdown-item">
+                    <a
+                      v-for="username in usernames"
+                      :key="username"
+                      href="#"
+                      class="dropdown-item"
+                      @click="selectUsername(username)"
+                    >
                       {{ username }}
                     </a>
                   </div>
                 </div>
               </div>
+              <button
+                v-if="selectedUsername"
+                class="button"
+                @click="logout"
+                style="background: transparent; border: none; box-shadow: none; color: black"
+              >
+                Log Out
+              </button>
               <p class="control">
                 <a
                   class="bd-tw-button button"
@@ -155,5 +187,23 @@ const isActive = ref(false)
 
 .button:hover {
   outline: 2px solid darkblue;
+}
+
+.navbar-item span {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.selected-username {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.profile-picture {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
 }
 </style>

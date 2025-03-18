@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { currentUser } from '../components/UserList.vue'
 import type { Post } from './user-posts'
 import { getOne } from './user.ts'

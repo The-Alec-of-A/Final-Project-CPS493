@@ -1,6 +1,3 @@
-import CardioStats from '@/components/CardioStats.vue'
-import { ref } from 'vue'
-
 export interface Summary {
   name: string
   note: string

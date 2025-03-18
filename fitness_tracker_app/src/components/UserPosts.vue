@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { Post } from '@/models/user-posts'
-import CardioStats from './CardioStats.vue'
 
 const props = defineProps<{ post: Post }>()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const summary = props.post.summary
 </script>
 

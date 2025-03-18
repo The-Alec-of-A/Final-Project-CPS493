@@ -1,6 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ref } from 'vue'
-import type { Post } from './user-posts'
-import type { Summary } from './summary'
 import users from '@/data/users.json'
 
 const emit = defineEmits(['add-username'])

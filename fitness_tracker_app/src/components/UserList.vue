@@ -27,6 +27,7 @@ function setCurrentUser(id: number) {
         <div
           class="dropdown-content is-align-content-center"
           v-for="user in getAll().users"
+          v-bind:key="user.userId"
           v-show="menuToggle"
         >
           <div class="dropdown-item">

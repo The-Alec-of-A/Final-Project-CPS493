@@ -1,5 +1,4 @@
-import { ref } from 'vue'
-import type { Summary, SummaryWeight } from './summary'
+import type { Summary } from './summary'
 
 export interface Post {
   content: string
