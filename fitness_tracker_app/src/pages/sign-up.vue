@@ -1,23 +1,26 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
+import { handleSubmit } from '@/models/user'
 
 const username = ref('')
+const existingUsernames = ref(['user1', 'user2', 'user3']) // Example existing usernames
 const usernameExists = ref(false)
 
 function checkUsername() {
-  const existingUsernames = ['user1', 'user2', 'user3']
-  usernameExists.value = existingUsernames.includes(username.value)
+  usernameExists.value = existingUsernames.value.includes(username.value)
 }
 </script>
 
 <template>
   <div class="container">
     <div class="form-group">
+      <span v-if="usernameExists" class="warning"
+        >Username already exists. Please try again.<br
+      /></span>
       <label for="username">Enter username: </label>
-      <input type="text" id="username" v-model="username" @blur="checkUsername" />
-      <span v-if="usernameExists" class="warning">Username already exists, please try again.</span>
+      <input type="text" id="username" v-model="username" @input="checkUsername" />
     </div>
-    <button class="submit-button">Submit</button>
+    <button class="submit-button" @click="handleSubmit">Submit</button>
   </div>
 </template>
 
