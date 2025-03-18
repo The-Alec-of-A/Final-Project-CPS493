@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const isActive = ref(false)
+const usernames = ref(['user1', 'user2', 'user3'])
 const isDropdownActive = ref(false)
-const usernames = null
+const isActive = ref(false)
+
+// Method to add a new username
 </script>
 
 <template>
@@ -48,12 +50,12 @@ const usernames = null
             </span>
             Friend's Activity
           </a>
-          <a class="navbar-item" href="#people-search">
+          <RouterLink to="/search" class="navbar-item">
             <span class="icon">
               <i class="fas fa-search"></i>
             </span>
             People Search
-          </a>
+          </RouterLink>
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="#admin">Admin</a>
             <div class="navbar-dropdown">
@@ -62,16 +64,9 @@ const usernames = null
           </div>
         </div>
 
-      <div class="navbar-end">
-        <div class="navbar-item">
+        <div class="navbar-end" style="display: flex; align-items: center">
           <div class="field is-grouped">
-            <RouterLink
-              to="/sign-up"
-              class="button"
-              style="background: transparent; border: none; box-shadow: none; color: black"
-            >
-              Sign Up
-            </RouterLink>
+            <RouterLink to="/sign-up" class="button is-primary"> Sign Up </RouterLink>
             <div class="dropdown" :class="{ 'is-active': isDropdownActive }">
               <div class="dropdown-trigger">
                 <button
@@ -80,7 +75,7 @@ const usernames = null
                   aria-controls="dropdown-menu"
                   @click="isDropdownActive = !isDropdownActive"
                 >
-                  <span>Login</span>
+                  <span>Log in</span>
                   <span class="icon is-small">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                   </span>
@@ -122,15 +117,6 @@ const usernames = null
   display: inline-block;
 }
 
-.dropbtn {
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -138,6 +124,12 @@ const usernames = null
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dropdown.is-active .dropdown-content {
+  display: block;
 }
 
 .dropdown-content a {
@@ -145,17 +137,10 @@ const usernames = null
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  font-weight: normal;
 }
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
 }
 </style>
