@@ -1,1 +1,0 @@
-import{r as s}from"./index-DQRx6Tv5.js";const a=defineEmits(["add-username"]),e=s(""),u=s(["user1","user2","user3"]),n=s(!1);function t(){!n.value&&e.value.trim()&&(a("add-username",e.value),u.value.push(e.value),e.value="")}export{t as h};
