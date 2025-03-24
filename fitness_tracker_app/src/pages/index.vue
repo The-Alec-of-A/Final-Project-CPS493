@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <h1>Fitness Tracker App Home Page</h1>
+    <h2>Fitness Tracker App Home Page</h2>
   </div>
 </template>
 
