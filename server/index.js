@@ -1,10 +1,12 @@
 // Load the http module to create an http server.
 const express = require('express');
+const productsController = require('./controllers/products');
 const PORT = 8000
 
 const app = express();
 
-app.get('/', (req, res) => {
+app
+.get('/', (req, res) => {
   res.send('Hello New Paltz, NY!!!\n');
 })
 
