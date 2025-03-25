@@ -1,16 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { refNotification, removeNotification } from '@/models/notifs'
 
-const notifications = ref([
-  { text: 'This is a primary notification #1', type: 'success' },
-  { text: 'This is a primary notification #2', type: 'warning' },
-  { text: 'This is a primary notification #3', type: 'danger' },
-  { text: 'This is a primary notification #4', type: 'info' },
-])
-
-function removeNotification(index: number) {
-  notifications.value.splice(index, 1)
-}
+const notifications = refNotification()
 </script>
 
 <template>
@@ -18,11 +9,11 @@ function removeNotification(index: number) {
     <div
       v-for="(message, index) in notifications"
       :key="index"
-      class="notification is-light"
+      class="notification is-success is-light"
       :class="`is-${message.type}`"
     >
       <button class="delete" @click="removeNotification(index)"></button>
-      {{ message.text }}
+      {{ message.message }}
     </div>
   </div>
 </template>
