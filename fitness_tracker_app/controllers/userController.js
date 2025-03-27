@@ -1,4 +1,5 @@
-const User = require('../models/user')
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import User from '../models/user'
 
 // ...existing code...
 
