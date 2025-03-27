@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { handleSubmit } from '@/models/user'
+import { handleSubmit } from '../models/user'
 
 const username = ref('')
 const existingUsernames = ref(['user1', 'user2', 'user3']) // Example existing usernames
@@ -12,7 +12,7 @@ function checkUsername() {
 </script>
 
 <template>
-  <div class="signup-container">
+  <div class="container">
     <div class="form-group">
       <span v-if="usernameExists" class="warning"
         >Username already exists. Please try again.<br
@@ -25,7 +25,7 @@ function checkUsername() {
 </template>
 
 <style scoped>
-.signup-container {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;

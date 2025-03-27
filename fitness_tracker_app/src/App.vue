@@ -16,7 +16,7 @@ body {
 }
 
 .body-container {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   height: 100vh;
   padding: 1rem;
 }

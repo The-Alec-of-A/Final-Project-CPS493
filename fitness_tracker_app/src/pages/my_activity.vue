@@ -9,7 +9,7 @@ const activityDistance = ref('')
 const activities = ref<
   { type: string; minutes: string; distance: string; markedForDeletion: boolean }[]
 >([]) // Store all activities
-const { addDistance } = useStats() // Function to update stats
+const { addTime, addDistance } = useStats() // Function to update stats
 
 function submitActivity() {
   const activityData = {
@@ -24,6 +24,7 @@ function submitActivity() {
 
   if (activityDistance.value) {
     addDistance(parseFloat(activityDistance.value)) // Update stats with distance
+    addTime(parseInt(activityMinutes.value)) // Update stats with time
   }
 
   // Reset fields and close panel
@@ -66,7 +67,7 @@ function deleteActivity() {
       <input type="number" v-model="activityMinutes" />
     </label>
     <label>
-      Distance (if applicable)(in miles):
+      Distance (in miles)(if applicable):
       <input type="number" v-model="activityDistance" />
     </label>
     <div class="panel-buttons">
@@ -122,7 +123,7 @@ function deleteActivity() {
 
 .add-activity-panel {
   background-color: #f9f9f9;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   padding: 20px;
   margin-top: 20px;
   width: 300px;
@@ -135,6 +136,7 @@ function deleteActivity() {
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  color: #b8860b;
 }
 
 .panel-buttons {

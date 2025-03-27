@@ -3,7 +3,14 @@
 // Import distances from my_activity.vue
 import { useStats } from '../models/useStats'
 
-const { todayDistance, weekDistance, allTimeDistance } = useStats()
+const {
+  todayDistance,
+  weekDistance,
+  allTimeDistance,
+  todayDuration,
+  weekDuration,
+  allTimeDuration,
+} = useStats()
 </script>
 
 <template>
@@ -16,10 +23,20 @@ const { todayDistance, weekDistance, allTimeDistance } = useStats()
               <div class="card-content">
                 <div class="content has-text-centered">
                   <p style="font-size: 18px">Today</p>
-                  <h3>
-                    <span id="today-distance">{{ todayDistance }} mi</span>
-                  </h3>
-                  <h3>Distance</h3>
+                  <div class="columns">
+                    <div class="column">
+                      <h3>
+                        <span id="today-duration">{{ todayDuration }} min</span>
+                      </h3>
+                      <p>Duration</p>
+                    </div>
+                    <div class="column">
+                      <h3>
+                        <span id="today-distance">{{ todayDistance }} mi</span>
+                      </h3>
+                      <p>Distance</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -38,10 +55,20 @@ const { todayDistance, weekDistance, allTimeDistance } = useStats()
               <div class="card-content">
                 <div class="content has-text-centered">
                   <p style="font-size: 18px">This week</p>
-                  <h3>
-                    <span id="week-distance">{{ weekDistance }} mi</span>
-                  </h3>
-                  <h3>Distance</h3>
+                  <div class="columns">
+                    <div class="column">
+                      <h3>
+                        <span id="week-duration">{{ weekDuration }} min</span>
+                      </h3>
+                      <p>Duration</p>
+                    </div>
+                    <div class="column">
+                      <h3>
+                        <span id="week-distance">{{ weekDistance }} mi</span>
+                      </h3>
+                      <p>Distance</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -60,10 +87,20 @@ const { todayDistance, weekDistance, allTimeDistance } = useStats()
               <div class="card-content">
                 <div class="content has-text-centered">
                   <p style="font-size: 18px">All time</p>
-                  <h3>
-                    <span id="alltime-distance">{{ allTimeDistance }} mi</span>
-                  </h3>
-                  <h3>Distance</h3>
+                  <div class="columns">
+                    <div class="column">
+                      <h3>
+                        <span id="alltime-duration">{{ allTimeDuration }} min</span>
+                      </h3>
+                      <p>Duration</p>
+                    </div>
+                    <div class="column">
+                      <h3>
+                        <span id="alltime-distance">{{ allTimeDistance }} mi</span>
+                      </h3>
+                      <p>Distance</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

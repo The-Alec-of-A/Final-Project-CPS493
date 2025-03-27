@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const usernames = ref(['John Smith', 'Jane Doe', 'Alec Arza'])
 const isDropdownActive = ref(false)
@@ -16,6 +16,22 @@ const selectUsername = (username: string) => {
 const logout = () => {
   selectedUsername.value = ''
 }
+
+// Close dropdown when clicking outside
+const closeDropdown = (event: Event) => {
+  const dropdown = document.querySelector('.dropdown')
+  if (dropdown && !dropdown.contains(event.target as Node)) {
+    isDropdownActive.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', closeDropdown)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', closeDropdown)
+})
 </script>
 
 <template>
@@ -29,7 +45,7 @@ const logout = () => {
           role="button"
           class="navbar-burger"
           aria-label="menu"
-          aria-expanded="false"
+          :aria-expanded="isActive ? 'true' : 'false'"
           :class="{ 'is-active': isActive }"
           @click="isActive = !isActive"
         >
@@ -75,76 +91,73 @@ const logout = () => {
         </div>
 
         <div class="navbar-end" style="display: flex; align-items: center">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <span v-if="selectedUsername" class="selected-username">
-                <img src="@/assets/blank-pfp.png" class="profile-picture" />
-                {{ selectedUsername }}
-              </span>
-              <RouterLink
-                v-else
-                to="/sign-up"
-                class="button"
-                style="background: transparent; border: none; box-shadow: none; color: black"
-              >
-                Sign Up
-              </RouterLink>
-              <div
-                class="dropdown"
-                :class="{ 'is-active': isDropdownActive }"
-                v-if="!selectedUsername"
-              >
-                <div class="dropdown-trigger">
-                  <button
-                    class="button"
-                    aria-haspopup="true"
-                    aria-controls="dropdown-menu"
-                    @click="isDropdownActive = !isDropdownActive"
+          <div class="field is-grouped">
+            <span v-if="selectedUsername" class="selected-username">
+              <img src="@/assets/blank-pfp.png" class="profile-picture" />
+              {{ selectedUsername }}
+            </span>
+            <RouterLink
+              to="/sign-up"
+              class="button"
+              style="background: transparent; border: none; box-shadow: none; color: black"
+            >
+              Sign Up
+            </RouterLink>
+            <div
+              class="dropdown"
+              :class="{ 'is-active': isDropdownActive }"
+              v-if="!selectedUsername"
+            >
+              <div class="dropdown-trigger">
+                <button
+                  class="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                  @click="isDropdownActive = !isDropdownActive"
+                >
+                  <span>Log in</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a
+                    v-for="username in usernames"
+                    :key="username"
+                    href="#"
+                    class="dropdown-item"
+                    @click="selectUsername(username)"
                   >
-                    <span>Log in</span>
-                    <span class="icon is-small">
-                      <i class="fas fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                  </button>
-                </div>
-                <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                  <div class="dropdown-content">
-                    <a
-                      v-for="username in usernames"
-                      :key="username"
-                      href="#"
-                      class="dropdown-item"
-                      @click="selectUsername(username)"
-                    >
-                      {{ username }}
-                    </a>
-                  </div>
+                    {{ username }}
+                  </a>
                 </div>
               </div>
-              <button
-                v-if="selectedUsername"
-                class="button"
-                @click="logout"
-                style="background: transparent; border: none; box-shadow: none; color: black"
-              >
-                Log Out
-              </button>
-              <p class="control">
-                <a
-                  class="bd-tw-button button"
-                  data-social-network="Twitter"
-                  data-social-action="tweet"
-                  data-social-target="https://bulma.io"
-                  target="_blank"
-                  href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms"
-                >
-                  <span class="icon">
-                    <i class="fab fa-twitter"></i>
-                  </span>
-                  <span> Tweet </span>
-                </a>
-              </p>
             </div>
+            <button
+              v-if="selectedUsername"
+              class="button"
+              @click="logout"
+              style="background: transparent; border: none; box-shadow: none; color: black"
+            >
+              Log Out
+            </button>
+            <p class="control">
+              <a
+                class="bd-tw-button button"
+                data-social-network="Twitter"
+                data-social-action="tweet"
+                data-social-target="https://bulma.io"
+                target="_blank"
+                href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=https://bulma.io&amp;via=jgthms"
+              >
+                <span class="icon">
+                  <i class="fab fa-twitter"></i>
+                </span>
+                <span> Tweet </span>
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -156,17 +169,6 @@ const logout = () => {
 .dropdown {
   position: relative;
   display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
 }
 
 .dropdown.is-active .dropdown-content {
@@ -197,7 +199,10 @@ const logout = () => {
 
 .selected-username {
   font-weight: bold;
-  margin-top: 5px;
+  color: black;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .profile-picture {
@@ -205,5 +210,6 @@ const logout = () => {
   height: 30px;
   margin-right: 10px;
   border-radius: 50%;
+  object-fit: cover;
 }
 </style>

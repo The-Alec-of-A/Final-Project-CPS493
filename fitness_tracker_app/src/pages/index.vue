@@ -2,8 +2,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    <h2>Fitness Tracker App Home Page</h2>
+  <div style="padding: 25px">
+    <h2 style="font-size: 2em; font-weight: bold">Welcome to the Fitness Tracker App</h2>
   </div>
 </template>
 
