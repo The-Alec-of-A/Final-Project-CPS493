@@ -1,24 +1,49 @@
 // Load the http module to create an http server.
 const express = require('express')
 const productsController = require('./controllers/products')
+const e = require('express')
 
 const PORT = 8000
 
 const app = express();
 
+
+// Middleware
+  app.use(express.json()) // Parse JSON request body
+
 app
-  .get('/', (req, res) => {
+  .get('/hello', (req, res) => {
     res.send('Hello New Paltz, NY!!!')
   })
   .use('/api/v1/products', productsController)
 
+
+app.use((err, req, res, next) => {
+  console.error(err)
+  const status = err.status || 500  //server-side error
+  
+  const error = {
+    status,
+    message: err.message || 'Internal Server Error',
+  }
+  res.status(status).send(error)
+})
 // Listen on port 8000, IP defaults to
 //
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`)
 });
 
-console.log('Hello Wolrd!')
+/*
+Asynchronous programming in Node.js- return type of async function is always a promise
+1. Callbacks
+2. Pipleines
+3. Promises
+4. Async/Await
+* 'await' keyword creates the actual promise
+*/
+
+console.log('Hello World!')
 
 /* 
   Ways to send data to the server
