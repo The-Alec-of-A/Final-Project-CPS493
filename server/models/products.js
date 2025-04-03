@@ -1,14 +1,20 @@
 const data = require('../data/products.json');
+const { contentError, statusCodes} = require('..//models/errors')
 
-function getAll(){
+async function getAll(){
     return data
 }
 
-function get(){
-    return data.find(item => item.id === id)    //if the item id found matches the id, return it
+async function get(){
+    const item = data.items.find(item => item.id === id)
+    if (!item) {
+        throw new Error('Item not found', { status: 404 })
+    }
+    
+    return item
 }
 
-function create(item){
+async function create(item){
     const newItem = {
         id: data.length + 1,
         ...item
@@ -17,8 +23,8 @@ function create(item){
     return newItem
 }
 
-function update(id, item){
-    const index = data.findIndex(item => item.id === id)
+async function update(id, item){
+    const index = data.items.findIndex(item => item.id === id)
     if (index === -1) {
         return null
     }
@@ -26,16 +32,18 @@ function update(id, item){
         ...data[index],
         ...item
     }
-    return data[index]
+    data[index] = updatedItem
+    return updatedItem
+
 }
 
-function remove(id){
-    const index = data.findIndex(item => item.id === id)
+async function remove(id){
+    const index = data.items.findIndex(item => item.id == id)
     if (index === -1) {
         return null
     }
-    const deletedItem = data[index]
-    data.splice(index, 1)
+    const deletedItem = data.items[index]
+    data.items.splice(index, 1)
     return deletedItem
 }
 
