@@ -29,3 +29,8 @@ const statusCodes = {
     GATEWAY_TIMEOUT: 504,
     HTTP_VERSION_NOT_SUPPORTED: 505,
 };
+
+module.exports = {
+    CustomError,
+    statusCodes,
+}
