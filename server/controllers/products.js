@@ -42,5 +42,21 @@ router
             res.send(data)
         }).catch(next)
     })
+    .get('/search/:query', (req, res, next) => {
+        const { query } = req.params
+
+        model.search(query).then((data) => {
+            res.send(data)
+        }).catch(next)
+
+    })
+    .post('/search', (req, res, next) => {
+        const { query } = req.body
+
+        model.search(query).then((data) => {
+            res.send(data)
+        }).catch(next)
+
+    })
 
 module.exports = router
