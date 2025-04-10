@@ -1,4 +1,4 @@
-class customError extends Error {
+/*class customError extends Error {
   constructor(message, status) {
     super(message);
     this.status = status;
@@ -33,4 +33,4 @@ const statusCodes = {
 module.exports = {
     CustomError,
     statusCodes,
-}
+}*/
