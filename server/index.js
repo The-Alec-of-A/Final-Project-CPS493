@@ -3,7 +3,7 @@ const express = require('express')
 const productsController = require('./controllers/products')
 const e = require('express')
 
-const PORT = 8000
+const PORT = process.env.PORT ?? 8000 // Default to 8000 if PORT is not set
 
 const app = express();
 
@@ -31,7 +31,7 @@ app.use((err, req, res, next) => {
 // Listen on port 8000, IP defaults to
 //
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`)
+    console.log('Welcome to the best class at New Paltz - $[process.env.BEST_CLASS]')
 });
 
 /*
