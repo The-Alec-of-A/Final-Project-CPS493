@@ -50,13 +50,12 @@ router
         }).catch(next)
 
     })
-    .post('/search', (req, res, next) => {
-        const { query } = req.body
+    .post('/seed', (req, res, next) => {
+        const { data } = req.body
 
-        model.search(query).then((data) => {
-            res.send(data)
+        model.seed(data).then((data) => {
+            res.status(201).send(data)
         }).catch(next)
-
     })
 
 module.exports = router

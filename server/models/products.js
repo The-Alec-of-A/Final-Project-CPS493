@@ -1,5 +1,5 @@
 const data = require('../data/products.json');
-const { contentError, statusCodes, CustomError} = require('..//models/errors')
+const { CustomError, statusCodes } = require('./errors')
 const { connect } = require('./supabase')
 
 const TABLE_NAME = 'products'
@@ -16,32 +16,33 @@ async function getAll(){
 }
 
 async function get(id){
-    const { data, item, error} = await connect().from(TABLE_NAME).select('*').eq('id', id)
-    .er('title.title.%$[query]%, description, price, image_url')
-    if (!item) {
+    const { data: item, error } = await connect().from(TABLE_NAME).select('*').eq('id', id)
+    if (!item.length) {
         throw new CustomError('Item not found', statusCodes.NOT_FOUND)
     }
-    
+    if (error) {
+        throw error
+    }
     return item
 }
 
 async function search(query){
-    const { data, error } = await connect().from(TABLE_NAME).select('*').ilike('name', `%${query}%`)
+    const { data: items, error } = await connect().from(TABLE_NAME).select('*')
+    .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
     if (error) {
         throw error
     }
-    return data
-}
+    return items
+} 
 
 async function create(item){
-    if (!isAdmin) {
-        throw CustomError('Sorry, you are not authorized to create a new item', statusCodes.UNAUTHORIZED)
+    if(!isAdmin){
+        throw CustomError("Sorry, you are not authorized to create a new item", statusCodes.UNAUTHORIZED)
     }
-    const newItem = {
-        id: data.length + 1,
-        ...item
+    const { data: newItem, error } = await connect().from(TABLE_NAME).insert(item).select('*')
+    if (error) {
+        throw error
     }
-    data.push(newItem)
     return newItem
 }
 
@@ -49,7 +50,7 @@ async function update(id, item){
     if(!isAdmin){
         throw CustomError('Sorry, you are not authorized to update this item', statusCodes.UNAUTHORIZED)
     }
-    const { data: updatedItem, error } = await connect().from(TABLE_NAME).select('*').eq('id', id)
+    const { data: updatedItem, error } = await connect().from(TABLE_NAME).update('*').eq('id', id)
     if (error) {
         throw error
     }
@@ -59,25 +60,75 @@ async function update(id, item){
 
 async function remove(id){
     if(!isAdmin){
-     throw CustomError('Sorry, you are not authorized to update this item', statusCodes.UNAUTHORIZED)
+        throw CustomError("Sorry, you are not authorized to delete this item", statusCodes.UNAUTHORIZED)
     }
-    const { data: item, error } = await connect().from(TABLE_NAME).delete().eq('id', id)
+    const { data: deletedItem, error } = await connect().from(TABLE_NAME).delete().eq('id', id)
+    if (error) {
+        throw error
+    }
+    return deletedItem
 }
 
-/*async function seed(){
-    for(const = of data.items) {
-       const newItem = {
-        shipping_information: item.shipping_information
-       }
+async function seed(){
+    for (const item of data.items) {
+
+        const insert = mapToDB(item)
+        const { data: newItem, error } = await connect().from(TABLE_NAME).insert(insert).select('*')
+        if (error) {
+            throw error
+        }
+
+        for (const review of item.reviews) {
+            const reviewInsert = mapReviewToDB(review, newItem[0].id)
+
+            const { data: newReview, error } = await connect().from('product_reviews').insert(reviewInsert).select('*')
+
+            if (error) {
+                throw error
+            }
+        }
+
     }
-    
-    return data
-}*/
+    return { message: 'Seeded successfully' }
+}
+
+function mapToDB(item) {
+    return {
+        //id: item.id,
+        title: item.title,
+        description: item.description,
+        category: item.category,
+        price: item.price,
+        rating: item.rating,
+        stock: item.stock,
+        tags: item.tags,
+        brand: item.brand,
+        sku: item.sku,
+        weight: item.weight,
+        dimensions: item.dimensions,
+        shipping_information: item.shippingInformation,
+        availability_status: item.availabilityStatus,
+        return_policy: item.returnPolicy,
+        minimum_order_quantity: item.minimumOrderQuantity
+    }
+}
+
+function mapReviewToDB(review, product_id) {
+    return {
+        product_id: product_id,
+        rating: review.rating,
+        comment: review.comment,
+        reviewer_email: review.reviewerEmail,
+        reviewer_name: review.reviewerName,
+        date: review.date,
+    }
+}
 
 module.exports = {
     getAll,
     get,
     create,
     update,
-    remove
+    remove,
+    seed,
 }
