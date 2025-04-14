@@ -1,7 +1,7 @@
-/*class customError extends Error {
+class CustomError extends Error {
   constructor(message, status) {
-    super(message);
-    this.status = status;
+    super(message)
+    this.status = status
   }
 }
 
@@ -33,4 +33,4 @@ const statusCodes = {
 module.exports = {
     CustomError,
     statusCodes,
-}*/
+}
