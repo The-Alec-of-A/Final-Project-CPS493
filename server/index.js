@@ -1,46 +1,59 @@
+/*  B"H
+*/
 // Load the http module to create an http server.
 const express = require('express')
-const productsController = require('./controllers/products')
-const e = require('express')
+const productsController = require('./controllers/products');
+const usersController = require('./controllers/users');
+require('dotenv').config()
 
-const PORT = process.env.PORT ?? 8000 // Default to 8000 if PORT is not set
+const PORT = process.env.PORT ?? 8000
 
 const app = express();
 
-
 // Middleware
-  app.use(express.json()) // Parse JSON request body
+    app.use(express.json())
 
+
+//Controllers
 app
   .get('/hello', (req, res) => {
     res.send('Hello New Paltz, NY!!!')
   })
   .use('/api/v1/products', productsController)
+  .use('/api/v1/users', usersController)
+  
+  .use('/', express.static('dist')) 
 
 
+//error handling middleware
 app.use((err, req, res, next) => {
   console.error(err)
-  const status = err.status || 500  //server-side error
-  
+  const status = err.status || 500
+
   const error = {
     status,
     message: err.message || 'Internal Server Error',
   }
   res.status(status).send(error)
-})
+ })
+
 // Listen on port 8000, IP defaults to
 //
+
+
 app.listen(PORT, () => {
-    console.log('Welcome to the best class at New Paltz - $[process.env.BEST_CLASS]')
+    console.log(`
+      Welcome to the best class at New Paltz - ${process.env.BEST_CLASS}
+      Server running at http://localhost:${PORT}/
+    `)
 });
 
 /*
-Asynchronous programming in Node.js- return type of async function is always a promise
-1. Callbacks
-2. Pipleines
-3. Promises
-4. Async/Await
-* 'await' keyword creates the actual promise
+  Asynchronous patterns in Node.js
+  1. Callbacks
+  2. Pipeline
+  3. Promises
+  4. Async/Await
 */
 
 console.log('Hello World!')
