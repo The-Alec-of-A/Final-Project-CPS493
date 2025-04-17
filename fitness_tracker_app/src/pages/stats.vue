@@ -10,7 +10,13 @@ const {
   todayDuration,
   weekDuration,
   allTimeDuration,
+  subtractStats, // Import the subtractStats method
 } = useStats()
+
+// Function to handle activity deletion
+function handleActivityDeletion(deletedActivity: { duration: number; distance: number }) {
+  subtractStats(deletedActivity.duration, deletedActivity.distance)
+}
 </script>
 
 <template>
@@ -107,6 +113,17 @@ const {
           </article>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <button
+        @click="handleActivityDeletion({ duration: 30, distance: 2 })"
+        class="button is-danger"
+      >
+        Delete Activity
+      </button>
     </div>
   </div>
 </template>

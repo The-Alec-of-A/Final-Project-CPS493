@@ -9,7 +9,7 @@ const activityDistance = ref('')
 const activities = ref<
   { type: string; minutes: string; distance: string; markedForDeletion: boolean }[]
 >([]) // Store all activities
-const { addTime, addDistance } = useStats() // Function to update stats
+const { addTime, addDistance, subtractStats } = useStats() // Function to update stats
 
 function submitActivity() {
   const activityData = {
@@ -46,7 +46,13 @@ function editActivity(index: number) {
 }
 
 function deleteActivity() {
-  activities.value = activities.value.filter((activity) => !activity.markedForDeletion) // Remove marked activities
+  activities.value = activities.value.filter((activity) => {
+    if (activity.markedForDeletion) {
+      subtractStats(parseInt(activity.minutes), parseFloat(activity.distance))
+      return false
+    }
+    return true
+  }) // Remove marked activities
 }
 </script>
 
