@@ -19,6 +19,15 @@ export function useStats() {
     allTimeDuration.value += duration
   }
 
+  function subtractStats(duration: number, distance: number) {
+    todayDistance.value -= distance
+    weekDistance.value -= distance
+    allTimeDistance.value -= distance
+    todayDuration.value -= duration
+    weekDuration.value -= duration
+    allTimeDuration.value -= duration
+  }
+
   return {
     todayDistance,
     weekDistance,
@@ -28,5 +37,6 @@ export function useStats() {
     weekDuration,
     allTimeDuration,
     addTime,
+    subtractStats,
   }
 }
