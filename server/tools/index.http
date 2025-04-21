@@ -1,8 +1,10 @@
+http://localhost:8000/api/v1/products?offset=5&limit=10&sort=price&order=asc
+ 
 ###
-http://localhost:8000/api/v1/products
+GET http://localhost:8000/api/v1/products/search/the?limit=10&sort=price&order=asc
 
 ###
-GET http://localhost:8000/api/v1/products/1
+GET http://localhost:8000/api/v1/products/122
 
 ###
 POST http://localhost:8000/api/v1/products
@@ -15,6 +17,7 @@ Content-Type: application/json
   "category": "electronics",
   "image": "https://example.com/image.jpg",
   "stock": 50
+  "thumbnail": "https://media-cldnry.s-nbcnews.com/image/upload/t_focal-1000x667,f_auto,q_auto:best/rockcms/2025-04/250403-donald-trump-se-1026a-c954d5.jpg"
 }
 
 ###

@@ -5,18 +5,24 @@ const { connect } = require('./supabase')
 const TABLE_NAME = 'products'
 const isAdmin = true
 
-async function getAll(){
-    const list = connect().from(TABLE_NAME).select('*')
-    if(list.error)
-        throw error
+const BaseQuery = () => connect().from(TABLE_NAME)
+    .select('*, product_reviews(average_rating:rating.avg())', { count: "estimated" })
+
+async function getAll(limit = 30, offset = 0, sort = 'id', order = 'desc'){
+    const list = await BaseQuery()
+    .order(sort, { ascending: order === 'asc' })
+    .range(offset, offset + limit - 1) // 0 based index but range is inclusive
+    if(list.error){
+        throw list.error
+    }
     return {
         items: list.data,
-        total: list.count 
+        total: list.count
     }
 }
 
 async function get(id){
-    const { data: item, error } = await connect().from(TABLE_NAME).select('*').eq('id', id)
+    const { data: item, error } = await connect().from(TABLE_NAME).select('*, productreviews(1)').eq('id', id)
     if (!item.length) {
         throw new CustomError('Item not found', statusCodes.NOT_FOUND)
     }
@@ -26,13 +32,18 @@ async function get(id){
     return item
 }
 
-async function search(query){
-    const { data: items, error } = await connect().from(TABLE_NAME).select('*')
+async function search(query, limit = 30, offset = 0, sort = 'id', order = 'desc'){
+    const { data: items, error, count } = await BaseQuery()
     .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+    .order(sort, { ascending: order === 'asc' })
+    .range(offset, offset + limit -1)
     if (error) {
         throw error
     }
-    return items
+    return {
+        items,
+        total: count
+    }
 } 
 
 async function create(item){
