@@ -1,12 +1,14 @@
-const data = require('../data/products.json');
+const data = require('../data/products.json')
 const { CustomError, statusCodes } = require('./errors')
 const { connect } = require('./supabase')
 
 const TABLE_NAME = 'products'
-const isAdmin = true
 
 const BaseQuery = () => connect().from(TABLE_NAME)
     .select('*, product_reviews(average_rating:rating.avg())', { count: "estimated" })
+    //.select('*')
+
+const isAdmin = true;
 
 async function getAll(limit = 30, offset = 0, sort = 'id', order = 'desc'){
     const list = await BaseQuery()
@@ -22,14 +24,15 @@ async function getAll(limit = 30, offset = 0, sort = 'id', order = 'desc'){
 }
 
 async function get(id){
-    const { data: item, error } = await connect().from(TABLE_NAME).select('*, productreviews(1)').eq('id', id)
+    const { data: item, error } = await connect().from(TABLE_NAME)
+    .select('*, product_reviews(*)').eq('id', id)
     if (!item.length) {
         throw new CustomError('Item not found', statusCodes.NOT_FOUND)
     }
     if (error) {
         throw error
     }
-    return item
+    return item[0]
 }
 
 async function search(query, limit = 30, offset = 0, sort = 'id', order = 'desc'){
@@ -59,9 +62,9 @@ async function create(item){
 
 async function update(id, item){
     if(!isAdmin){
-        throw CustomError('Sorry, you are not authorized to update this item', statusCodes.UNAUTHORIZED)
+        throw CustomError("Sorry, you are not authorized to update this item", statusCodes.UNAUTHORIZED)
     }
-    const { data: updatedItem, error } = await connect().from(TABLE_NAME).update('*').eq('id', id)
+    const { data: updatedItem, error } = await connect().from(TABLE_NAME).update(item).eq('id', id).select('*')
     if (error) {
         throw error
     }
@@ -120,7 +123,9 @@ function mapToDB(item) {
         shipping_information: item.shippingInformation,
         availability_status: item.availabilityStatus,
         return_policy: item.returnPolicy,
-        minimum_order_quantity: item.minimumOrderQuantity
+        minimum_order_quantity: item.minimumOrderQuantity,
+        thumbnail: item.thumbnail,
+        images: item.images,
     }
 }
 
@@ -138,6 +143,7 @@ function mapReviewToDB(review, product_id) {
 module.exports = {
     getAll,
     get,
+    search,
     create,
     update,
     remove,
