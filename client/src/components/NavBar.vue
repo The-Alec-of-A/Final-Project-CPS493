@@ -71,12 +71,6 @@ const event = defineEmits<{
             <span class="cart-length tag is-danger">{{ cart.length }}</span>
           </div>
           <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light"> Log in </a>
-            </div>
           </div>
         </div>
       </div>
