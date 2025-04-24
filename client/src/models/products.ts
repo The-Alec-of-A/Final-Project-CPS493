@@ -1,5 +1,12 @@
-import products from '@/data/products.json'
-import type { DataListEnvelope } from '@/models/dataEnvelopes'
+import type { DataListEnvelope } from './dataEnvelopes'
+import { api } from './session'
+
+export interface ProductDimensions {
+  width: number
+  height: number
+  depth: number
+}
+
 export interface ProductReview {
   rating: number
   comment: string
@@ -8,17 +15,9 @@ export interface ProductReview {
   reviewerEmail: string
 }
 
-export interface ProductDimensions {
-  width: number
-  height: number
-  depth: number
-}
-
 export interface ProductMeta {
   createdAt: string
   updatedAt: string
-  barcode: string
-  qrCode: string
 }
 
 export interface Product {
@@ -27,7 +26,6 @@ export interface Product {
   description: string
   category: string
   price: number
-  discountPercentage?: number
   rating?: number
   stock?: number
   tags?: string[]
@@ -46,17 +44,9 @@ export interface Product {
 }
 
 export function getAll() {
-  return products as DataListEnvelope<Product>
+  return api<DataListEnvelope<Product>>('products')
 }
 
 export function getOne(id: string) {
-  return products.items.find((item) => item.id == +id) as Product
+  return api<Product>(`products/${id}`)
 }
-
-getAll().items.push({
-  id: 100,
-  title: 'Test Prpduct',
-  description: 'This is a test product',
-  category: 'Test',
-  price: 0.5,
-})
