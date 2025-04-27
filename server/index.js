@@ -1,5 +1,3 @@
-/*  B"H
-*/
 // Load the http module to create an http server.
 const express = require('express')
 const productsController = require('./controllers/products');
@@ -11,6 +9,16 @@ const PORT = process.env.PORT ?? 8000
 const app = express();
 
 // Middleware
+// CORS
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(200)
+    }
+    next()
+  })
     app.use(express.json())
 
 
