@@ -1,0 +1,62 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="menu.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Menu Example (reproduction)</title>
+    </head>
+    <body>
+        <ul>
+            <li class="dropdown">
+            <b><a href="javascript:void(0)" class="dropbtn">File</a></b>
+                <div class="dropdown-content">
+                    <a href="#">New</a>
+                    <a href="#">Open</a>
+                    <a href="#">Save</a>
+                    <a href="#">Print</a>
+                    <a href="#">Close</a>
+            </div>
+            </li>
+
+            <li class="dropdown" id="edit-dropdown">
+            <a href="javascript:void(0)" class="dropbtn" id="edit-link">Edit</a>
+                <div class="dropdown-content">
+                    <a href="#">Undo</a>
+                    <a href="#">Redo</a>
+                    <a href="#">Cut</a>
+                    <a href="#">Copy</a>
+                    <a href="#">Paste</a>
+                    <a href="#">Delete</a>
+                    <a href="#">Select All</a>
+            </div>
+            </li>
+
+            <li class="dropdown">
+            <b><a href="javascript:void(0)" class="dropbtn">View</a></b>
+                <div class="dropdown-content">
+                    <a href="#">Zoom In</a>
+                    <a href="#">Zoom Out</a>
+                    <a href="#">Actual Size</a>
+                    <a href="#">Fit Page</a>
+                    <a href="#">Fit Width</a>
+                    <a href="#">Fit Height</a>
+                    <a href="#">Rotate Left</a>
+                    <a href="#">Rotate <br/>Right</a>
+                    <a href="#">Full <br/>Screen </a>
+            </div>
+            </li>
+        </ul>
+        <script>
+            document.addEventListener('click', function(event) {
+                var dropdown = document.getElementById('edit-dropdown');
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove('open');
+                }
+            });
+
+            document.getElementById('edit-dropdown').addEventListener('click', function(event) {
+                this.classList.toggle('open');
+            });
+        </script>
+    </body>
+</html>
