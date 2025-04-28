@@ -14,6 +14,11 @@ getAll()
 function doAddToCart(product: Product) {
     addToCart(product)
 }
+interface Ratable {
+  product_reviews: {
+    average_rating: number;
+  }
+}
 </script>
 
 <template>
