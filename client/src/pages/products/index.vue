@@ -32,10 +32,14 @@ interface Ratable {
                     </RouterLink>
                 </div>
                 <div class="product-info">
-                    <h2>{{ p.title }}</h2>
-                    <p>{{ p.description }}</p>
-                    <span class="price">${{ p.price }}</span>
-                    <button class="button is-success" @click="doAddToCart(p)">Add to cart</button>
+
+                  <b-rate :model-value="(p as any)?.product_reviews[0]?.average_rating" disabled
+                    show-score></b-rate>
+
+                <h2>{{ p.title }}</h2>
+                <p>{{ p.description }}</p>
+                <span class="price">${{ p.price }}</span>
+                <button class="button is-success" @click="doAddToCart(p)">Add to cart</button>
                 </div>
             </div>
         </div>
@@ -43,6 +47,10 @@ interface Ratable {
 </template>
 
 <style scoped>
+.rate {
+    float: right;
+}
+
 .shelf {
     display: flex;
     flex-wrap: wrap;
