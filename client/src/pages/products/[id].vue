@@ -19,7 +19,7 @@ const newReview = ref<Partial<ProductReview>>({
 
 const session = refSession();
 
-getOne(route.params.id)
+getOne(route.params.id as string)
     .then((response) => {
         product.value = response;
     })
