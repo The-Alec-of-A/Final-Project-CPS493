@@ -93,7 +93,6 @@ onUnmounted(() => {
         <div class="navbar-end" style="display: flex; align-items: center">
           <div class="field is-grouped">
             <span v-if="selectedUsername" class="selected-username">
-              <img src="@/assets/blank-pfp.png" class="profile-picture" />
               {{ selectedUsername }}
             </span>
             <RouterLink
