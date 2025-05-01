@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "../dist", "../dist"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/dist", "src/dist"],
   "exclude": ["src/**/__tests__/*"],
   "moduleResolution": "Bundler",
   "compilerOptions": {
