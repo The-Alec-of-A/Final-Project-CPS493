@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { api } from '@/models/myFetch'
+import { api } from '@/models/myFetch';
 import { getOne, type ProductReview, type Product } from '@/models/products';
+import { create, remove, update } from '@/models/reviews';
 import { refSession } from '@/models/session';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -13,8 +14,8 @@ const route = useRoute('/products/[id]')
 const product = ref<Product>();
 
 const newReview = ref<Partial<ProductReview>>({
-  rating: 0,
-  comment: '',
+    rating: 0,
+    comment: '',
 })
 
 const session = refSession();
@@ -25,25 +26,66 @@ getOne(route.params.id as string)
     })
 
 const avg_rating = computed(() =>
-  (product.value?.reviews?.reduce((acc, review) => acc + (review?.rating ?? 0), 0) ?? 0)
+    (product.value?.reviews?.reduce((acc, review) => acc + (review?.rating ?? 0), 0) ?? 0)
     / (product.value?.reviews?.length ?? 1)
 );
 
-async function submit_review(){
-  if(!session.value.user) {
-    return;
-  }
-  const review = {
-    ...newReview.value,
-    product_id: product.value?.id,
-    reviewer_id: session.value.user.id,
-    data: new Date().toLocaleDateString(),
-  } as ProductReview;
+async function createReview() {
+    if (!session.value.user) {
+        return;
+    }
+    const review = {
+        ...newReview.value,
+        product_id: product.value?.id,
+        reviewer_id: session.value.user.id,
+        date: new Date().toLocaleDateString(),
+    } as ProductReview;
 
-  //const response = await api('reviews', review)
+    const response = await create(review);
 
-  product.value?.reviews?.push(review);
+    product.value?.reviews?.push(response)
+
+    newReview.value = {
+        rating: 0,
+        comment: '',
+    }
 }
+
+async function deleteReview(id: number) {
+
+    const response = await remove(id);
+    // if no exception was thrown, then the review was deleted
+    product.value?.reviews?.splice(product.value.reviews.findIndex((r) => r.id === id), 1);
+}
+
+async function startEdit(review: ProductReview) {
+    newReview.value = {
+        ...review,
+    }
+}
+
+async function updateReview() {
+    if (!newReview.value.id) {
+        return;
+    }
+    const response = await update(newReview.value.id, newReview.value as ProductReview);
+
+    product.value?.reviews?.splice(product.value.reviews.findIndex((r) => r.id === newReview.value.id), 1, response)
+
+    newReview.value = {
+        rating: 0,
+        comment: '',
+    }
+}
+
+async function SubmitReview() {
+    if (newReview.value.id) {
+        await updateReview();
+    } else {
+        await createReview();
+    }
+}
+
 </script>
 
 <template>
@@ -54,6 +96,7 @@ async function submit_review(){
                 <img v-for="i in product.images" :src="i" alt="product image" />
             </div>
             <div class="product-info">
+                <b-rate v-model="avg_rating" disabled show-score size="is-large"></b-rate>
                 <h1 class="title">
                     {{ product.title }}
                 </h1>
@@ -69,7 +112,24 @@ async function submit_review(){
                     Reviews:
                     <ul>
                         <li class="card" v-for="review in product.reviews" :key="review.id">
-                          <div class="card-content">
+                            <div v-if="review.reviewer_id == session.user?.id || session.user?.role == 'admin'"
+                                 class="buttons  has-addons" style="float: right;">
+                                <button class="button is-small" @click="startEdit(review)">
+
+                                    <span class="icon is-small">
+                                        <i class="fas fa-edit"></i>
+                                    </span>
+
+                                </button>
+                                <button class="button is-small" @click="deleteReview(review.id)">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                </button>
+                            </div>
+
+
+                            <div class="card-content">
                                 <img :src="review.reviewer?.image" alt="reviewer avatar"
                                      class="avatar" />
                                 <strong>{{ review.reviewer?.firstName }} {{ review.reviewer?.lastName }}</strong> -
@@ -81,9 +141,10 @@ async function submit_review(){
                                     {{ dayjs(review.date).fromNow() }}
                                 </i>
                             </div>
-                          </li>
+
+                        </li>
                     </ul>
-                    <form class="card" v-if="session.user" @submit.prevent="submit_review">
+                    <form class="card" v-if="session.user" @submit.prevent="SubmitReview">
                         <div class="card-content">
                             <img :src="session.user?.image" alt="reviewer avatar"
                                  class="avatar" />
@@ -99,10 +160,12 @@ async function submit_review(){
                         <p>You need to be logged in to leave a review</p>
 
                     </div>
+
                 </div>
             </div>
 
         </div>
+
         <div v-else class="section">
             <h1 class="title">Loading...</h1>
         </div>
