@@ -12,7 +12,7 @@ export interface ProductDimensions {
 export interface ProductReview {
   id: number
   product_id: number
-  user_id: number
+  reviewer_id: number
   rating: number
   comment: string
   date: string
