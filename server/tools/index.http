@@ -1,116 +1,118 @@
-## B"H
 
-
+https://localhost:8000/user
 ###
-http://localhost:8000/api/v1/products?offset=5&limit=10&sort=price&order=asc
 
+GET http://localhost:8000/users/
 ###
-GET http://localhost:8000/api/v1/products/search/the?limit=10&sort=price&order=asc
 
+GET http://localhost:8000/users/6
 ###
-GET http://localhost:8000/api/v1/products/144
 
+GET http://localhost:10000/users/search/Gonzalez?limit=10&sort=first_Name&order=asc
 ###
-POST http://localhost:8000/api/v1/products
+
+Get http://localhost:10000/users/search/10
+###
+
+POST http://localhost:8000/users/
 Content-Type: application/json
 
 {
-  "title": "New Product",
-  "description": "This is a new product",
-  "price": 100,
-  "category": "electronics",
-  "stock": 50,
-  "thumbnail": "https://media-cldnry.s-nbcnews.com/image/upload/t_focal-1000x667,f_auto,q_auto:best/rockcms/2025-04/250403-donald-trump-se-1026a-c954d5.jpg"
+    "first_Name": "Alec",
+    "last_Name": "Arza",
+    "age": 22
 }
-
 ###
-PATCH http://localhost:8000/api/v1/products/1
+
+PATCH http://localhost:10000/users/10
 Content-Type: application/json
 
 {
-  "price": 150
+    "friends_Ids" : [5]
 }
-
 ###
-DELETE http://localhost:8000/api/v1/products/1
 
-
+DELETE http://localhost:8000/users/33
 ###
-POST http://localhost:8000/api/v1/products/seed
 
-########################
-# Users Controller
-########################
-
+POST http://localhost:8000/users/seed
 ###
-http://localhost:8000/api/v1/users
 
-###
-GET http://localhost:8000/api/v1/users/1
+PATCH  http://localhost:8000/users/7/addFriend/10
 
-###
-GET http://localhost:8000/api/v1/users/search/Gonzalez?limit=10&sort=firstName&order=asc
+###Summaries test
 
+GET http://localhost:8000/summaries/
 ###
-POST http://localhost:8000/api/v1/users
+
+GET http://localhost:8000/summaries/10
+###
+
+GET http://localhost:8000/summaries/search/10?limit=10
+###
+
+POST http://localhost:8000/summaries/
 Content-Type: application/json
 
 {
-
+    "user_id": 44,
+    "name": "Sit ups",
+    "note": "afternoon routine",
+    "type": "weight",
+    "sets": 15,
+    "reps": 4
 }
-
 ###
-PATCH http://localhost:8000/api/v1/users/1
+
+PATCH http://localhost:8000/summaries/20
 Content-Type: application/json
 
 {
-  "firstName": "Jane",
-  "lastName": "Doe"
+    "sets": 25
 }
-
 ###
-DELETE http://localhost:8000/api/v1/users/1
 
+DELETE http://localhost:10000/summaries/65
 ###
-POST http://localhost:8000/api/v1/users/seed
 
+POST http://localhost:8000/summaries/seed
 
-########################
-# Reviews Controller
-########################
+### Posts test
 
+GET http://localhost:8000/posts/
 ###
-http://localhost:8000/api/v1/reviews
 
+GET http://localhost:8000/posts/10
 ###
-GET http://localhost:8000/api/v1/reviews/720
 
+GET http://localhost:8000/posts/search/4?
 ###
-GET http://localhost:8000/api/v1/reviews/search/great?limit=10&sort=rating&order=asc
 
-###
-POST http://localhost:8000/api/v1/reviews
+POST http://localhost:8000/posts/
 Content-Type: application/json
 
 {
-"product_id": 250,
-  "rating": 2,
-  "comment": "Why is everyone so obsessed with kiwis? I can't stand the taste of them. I don't get the hype.",
-  "date": "2025-05-23T08:56:21.62",
-  "reviewer_name": "Emma Miller",
-  "reviewer_email": "emma.miller@x.dummyjson.com",
-  "reviewer_id": 5
+    "user_Id": 20,
+    "summary_Id": 11,
+    "content": "good time today",
+    "date": "2025-04-25"
 }
-
 ###
-PATCH http://localhost:8000/api/v1/reviews/722
+
+PATCH http://localhost:8000/posts/10
 Content-Type: application/json
 
 {
-  "rating": 4,
-  "comment": "I love kiwis! They are so delicious and refreshing. I could eat them every day.",
-  "date": "2025-05-28T08:56:21.62"
+    "date": "2030-05-05"
 }
-
 ###
-DELETE http://localhost:8000/api/v1/reviews/722
+
+DELETE http://localhost:8000/posts/52
+###
+
+POST http://localhost:8000/posts/seed
+###
+
+###Vue request tests
+
+GET http://localhost:8000/summaries/search/5?
