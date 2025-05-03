@@ -1,19 +1,17 @@
-const data = require('../data/users.json')
-const { CustomError, statusCodes } = require('./errors')
+const data = require("../data/users.json")
 const { connect } = require('./supabase')
 
-const TABLE_NAME = 'users'
+const TABLE_NAME = 'Users'
 
 const BaseQuery = () => connect().from(TABLE_NAME)
-    .select('*, product_reviews(average_rating:rating.avg())', { count: "estimated" })
-    //.select('*')
+                    .select('*')
 
 const isAdmin = true;
 
-async function getAll(limit = 30, offset = 0, sort = 'id', order = 'desc'){
+async function getAll(limit = 30, offset = 0, sort = 'user_id', order = 'asc') {
     const list = await BaseQuery()
-    .order(sort, { ascending: order === 'asc' })
-    .range(offset, offset + limit - 1) // 0 based index but range is inclusive
+    .order(sort , {ascending: order === 'asc'})
+    .range(offset, offset + limit - 1)
     if(list.error){
         throw list.error
     }
@@ -23,21 +21,28 @@ async function getAll(limit = 30, offset = 0, sort = 'id', order = 'desc'){
     }
 }
 
-async function get(id){
-    const { data: item, error } = await connect().from(TABLE_NAME)
-    .select('*, product_reviews(*)').eq('id', id)
-    if (!item.length) {
-        throw new CustomError('Item not found', statusCodes.NOT_FOUND)
-    }
-    if (error) {
+async function get(id) {
+    const { data: item, error} = await connect().from(TABLE_NAME)
+        .select('*').eq("user_id", id)
+    if(error){
         throw error
     }
     return item[0]
 }
 
-async function search(query, limit = 30, offset = 0, sort = 'id', order = 'desc'){
+async function search(query, limit = 30, offset = 0, sort = 'id', order = 'asc'){
+    
+    if(!isNaN(query)){
+        const { data, error } = await BaseQuery()
+            .select()
+            .contains('friends_Ids', [query])
+        if(error) {
+            throw error
+        }
+        return data
+    }
     const { data: items, error, count } = await BaseQuery()
-    .or(`firstName.ilike.%${query}%,lastName.ilike.%${query}%,email.ilike.%${query}%,phone.ilike.%${query}%`)
+    .or(`first_Name.ilike.%${query}%,last_Name.ilike.%${query}%,email.ilike.%${query}%,phone.ilike.%${query}%`)
     .order(sort, { ascending: order === 'asc' })
     .range(offset, offset + limit -1)
     if (error) {
@@ -49,66 +54,73 @@ async function search(query, limit = 30, offset = 0, sort = 'id', order = 'desc'
     }
 } 
 
-async function create(item){
-    if(!isAdmin){
-        throw CustomError("Sorry, you are not authorized to create a new item", statusCodes.UNAUTHORIZED)
-    }
-    const { data: newItem, error } = await connect().from(TABLE_NAME).insert(item).select('*')
-    if (error) {
+async function create(user) {
+
+    const { data: item, error} = await connect().from(TABLE_NAME).insert(user).select('*')
+    if(error){
         throw error
     }
-    return newItem
+    return item
 }
 
-async function update(id, item){
-    if(!isAdmin){
-        throw CustomError("Sorry, you are not authorized to update this item", statusCodes.UNAUTHORIZED)
-    }
-    const { data: updatedItem, error } = await connect().from(TABLE_NAME).update(item).eq('id', id).select('*')
-    if (error) {
+async function update(id, values) {
+    const {data: item, error} = await connect().from(TABLE_NAME).update(values).eq('user_id', id).select('*')
+    if (error){
         throw error
     }
-    return updatedItem
 
+    return item
 }
 
-async function remove(id){
-    if(!isAdmin){
-        throw CustomError("Sorry, you are not authorized to delete this item", statusCodes.UNAUTHORIZED)
-    }
-    const { data: deletedItem, error } = await connect().from(TABLE_NAME).delete().eq('id', id)
-    if (error) {
+async function remove(id) {
+    const {data: item, error} = await connect().from(TABLE_NAME).delete().eq('user_id', id).select('*')
+    if(error){
         throw error
     }
-    return deletedItem
+    return item
 }
 
-async function seed(){
-    for (const item of data.items) {
+async function seed() {
+    for( const item of data.items){
 
-        const insert = mapToDB(item)
-        const { data: newItem, error } = await connect().from(TABLE_NAME).insert(insert).select('*')
-        if (error) {
+        const mapped = mapToDB(item)
+        
+        const { data: newItem, error} = await connect().from(TABLE_NAME).insert(mapped).select('*')
+        if(error){
             throw error
         }
-
     }
-    return { message: 'Seeded successfully' }
+
+    return {message: "items sent to DB"}
 }
 
-function mapToDB(item) {
+async function addFriend(id, friendId) {
+
+    const {data: item, error} = await connect().from(TABLE_NAME).select('*').eq("user_id", id)
+    if(error){
+        throw error
+    }
+
+    item[0].friends_Ids.push(friendId)
+
+    const {newData: newItem, error2} = await connect().from(TABLE_NAME).update(item).eq("user_id", id).select('*')
+    if(error2){
+        throw error2
+    }
+    return item[0]
+}
+
+function mapToDB(item){
     return {
-        //id: item.id,
-        firstName: item.firstName,
-        lastName: item.lastName,
-        email: item.email,
-        phone: item.phone,
+        user_id: item.id,
+        first_Name: item.firstName,
+        last_Name: item.lastName,
         age: item.age,
         gender: item.gender,
-        birthDate: item.birthDate,
-        image: item.image,
-        university: item.university,
-        role: item.role,
+        email: item.email,
+        phone: item.phone,
+        birth_Date: item.birthDate,
+        friends_Ids: []
     }
 }
 
@@ -120,4 +132,5 @@ module.exports = {
     update,
     remove,
     seed,
+    addFriend
 }
