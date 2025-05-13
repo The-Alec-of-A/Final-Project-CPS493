@@ -24,6 +24,10 @@ const app = express();
 
 
 //Controllers
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
 app
   .get('/hello', (req, res) => {
     res.send('Hello New Paltz, NY!!!')

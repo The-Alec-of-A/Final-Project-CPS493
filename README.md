@@ -1,4 +1,4 @@
-# In-Class work
+# In-Class Repo
 ## This repo contains the work done during class
 ## About Me
 ![alt text](self1.png)

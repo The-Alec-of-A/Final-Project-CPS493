@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { askGemini } from '@/models/google';
 import { api } from '@/models/myFetch';
 import { getOne, type ProductReview, type Product } from '@/models/products';
 import { create, remove, update } from '@/models/reviews';
@@ -87,16 +86,6 @@ async function SubmitReview() {
     }
 }
 
-async function suggestReview() {
-    const response = await askGemini(
-        `Write a review for a product with the following details: ${product.value?.title} - ${product.value?.description} - ${product.value?.category} - ${product.value?.brand} - ${product.value?.tags?.join(' / ')}
-        The review should reflect the following rating: ${newReview.value.rating} on a scale of 1 to 5 and be less than 250 characters long.
-        ${newReview.value.comment}`
-    );
-    console.log(response);
-    newReview.value.comment = response;
-}
-
 </script>
 
 <template>
@@ -164,16 +153,7 @@ async function suggestReview() {
                             <b-rate v-model="newReview.rating" show-score></b-rate>
                             <textarea v-model="newReview.comment" class="textarea"
                                       placeholder="Leave a review"></textarea>
-
-                            <div style="display: flex; justify-content: space-between;">
-                                <button class="button is-success">Submit</button>
-                                <button class="button" @click.prevent="suggestReview">
-                                    <span class="icon">
-                                        <i class="fas fa-magic"></i>
-                                    </span>
-                                </button>
-                            </div>
-
+                            <button class="button is-success">Submit</button>
                         </div>
                     </form>
                     <div v-else>

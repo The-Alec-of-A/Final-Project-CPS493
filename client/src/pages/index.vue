@@ -1,6 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-const bestClass = 'Web Programming'
+import { refSession } from '@/models/session';
+
+var bestClass = 'Web Programming'
+const session = refSession()
+
 </script>
 
 <template>
@@ -14,6 +18,7 @@ const bestClass = 'Web Programming'
                  placeholder="Tell me about your favorite class">
        </textarea>
        <button class="button is-success" type="submit">Submit</button>
+
      </form>
   </main>
 </template>
