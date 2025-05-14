@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 // Import distances from my_activity.vue
-import { useStats } from '../models/useStats'
+import { useStats } from '../models/userStats'
 
 const {
   todayDistance,
