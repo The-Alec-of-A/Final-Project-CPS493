@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import * as myFetch from './myFetch'
 import * as myPost from './myPost'
-import * as myPatch from './myPatch'
+import * as myPatch from './patch'
 import * as myDelete from './deletions'
 import { getOne, type User } from './user'
 
