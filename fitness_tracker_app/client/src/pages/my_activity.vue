@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useStats } from '../models/useStats' // Assuming a composable for stats management
+import { useStats } from '../models/userStats' // Assuming a composable for stats management
 
 const showAddActivityPanel = ref(false)
 const activityType = ref('')
