@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import SocialPost from '@/components/SocialPost.vue';
-import { getPostByUser, type Post } from '@/models/posts';
+import SocialPost from '@/components/SocialPosts.vue';
+import { getPostByUser, type Post } from '@/models/userPosts';
 import { currentUser, isLoggedIn } from '@/models/session';
 import { getUsersWithFriend, getOne, updateFriends, type User } from '@/models/user';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -60,9 +61,9 @@ import { useRoute } from 'vue-router';
         </div>
         <div class=" container column is-one-fifth">
           <h2 class="title">People you may know</h2>
-            <div class="m-5 friend p-0 m-0" v-for="friend in userFriends">
-          <RouterLink :to="`/Profile/${friend.id}`">
-            <p class="is-size-5"><FontAwesomeIcon/> {{ friend.firstName + " " + friend.last_Name }}</p>
+          <div class="m-5 friend p-0 m-0" v-for="friend in userFriends">
+            <RouterLink :to="`/Profile/${friend.id}`">
+            <p class="is-size-5"><FontAwesomeIcon :icon="faCircleUser" /> {{ friend.firstName + " " + friend.lastName }}</p>
           </RouterLink>
         </div>
         </div>
