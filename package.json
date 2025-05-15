@@ -1,5 +1,5 @@
 {
-    "name": "2025spring",
+    "name": "final_project_cps493",
     "version": "1.0.0",
     "private": true,
     "description": "",
@@ -10,6 +10,7 @@
         "build": "npm i --prefix client && npm run build:client"
     },
     "license": "ISC",
+    "packageManager": "pnpm@10.8.0",
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.7.2",
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -28,7 +29,6 @@
         "vue-router": "^4.5.1"
     },
     "devDependencies": {
-        "@types/google.accounts": "^0.0.15",
         "@vitejs/plugin-vue": "^5.2.4",
         "@vue/tsconfig": "^0.7.0",
         "nodemon": "^3.1.9",
