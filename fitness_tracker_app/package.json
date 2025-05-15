@@ -13,6 +13,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@oruga-ui/oruga-next": "0.10.5",
+    "@oruga-ui/theme-oruga": "0.10.5",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "bulma": "^1.0.3",
     "client": "file:",

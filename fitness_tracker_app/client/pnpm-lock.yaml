@@ -17,6 +17,12 @@ importers:
       '@fortawesome/free-solid-svg-icons':
         specifier: ^6.7.2
         version: 6.7.2
+      '@oruga-ui/oruga-next':
+        specifier: ^0.10.5
+        version: 0.10.5(vue@3.5.13(typescript@5.7.3))
+      '@oruga-ui/theme-oruga':
+        specifier: ^0.6.0
+        version: 0.6.0(@oruga-ui/oruga-next@0.10.5(vue@3.5.13(typescript@5.7.3)))
       bulma:
         specifier: ^1.0.3
         version: 1.0.3
@@ -526,6 +532,16 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@oruga-ui/oruga-next@0.10.5':
+    resolution: {integrity: sha512-unxjOBM70sHo0uZnWheF9eT2vAI23rRU2Fg4MTxzibWx9Ku1hax3xL9HSO8gneNG8nikN/BJncX1lE+yy93rtg==}
+    peerDependencies:
+      vue: ^3.0.0
+
+  '@oruga-ui/theme-oruga@0.6.0':
+    resolution: {integrity: sha512-Rr/FS30JvaxYau0r40y2kMZ0nQMqlDMVXDx27htw2c6FZJVwFZZo/ldlTbrC5gBBlVY1bGXq1uiwobZlocLAoQ==}
+    peerDependencies:
+      '@oruga-ui/oruga-next': ^0.10.0
 
   '@pkgr/core@0.1.1':
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
@@ -2037,6 +2053,9 @@ packages:
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
+  vue-component-type-helpers@2.2.10:
+    resolution: {integrity: sha512-iDUO7uQK+Sab2tYuiP9D1oLujCWlhHELHMgV/cB13cuGbG4qwkLHvtfWb6FzvxrIOPDnU0oHsz2MlQjhYDeaHA==}
+
   vue-eslint-parser@10.1.1:
     resolution: {integrity: sha512-bh2Z/Au5slro9QJ3neFYLanZtb1jH+W2bKqGHXAoYD4vZgNG3KeotL7JpPv5xzY4UXUXJl7TrIsnzECH63kd3Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2547,6 +2566,15 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
+
+  '@oruga-ui/oruga-next@0.10.5(vue@3.5.13(typescript@5.7.3))':
+    dependencies:
+      vue: 3.5.13(typescript@5.7.3)
+      vue-component-type-helpers: 2.2.10
+
+  '@oruga-ui/theme-oruga@0.6.0(@oruga-ui/oruga-next@0.10.5(vue@3.5.13(typescript@5.7.3)))':
+    dependencies:
+      '@oruga-ui/oruga-next': 0.10.5(vue@3.5.13(typescript@5.7.3))
 
   '@pkgr/core@0.1.1': {}
 
@@ -3062,7 +3090,10 @@ snapshots:
   client@file:(typescript@5.7.3):
     dependencies:
       '@fortawesome/fontawesome-free': 6.7.2
+      '@fortawesome/free-regular-svg-icons': 6.7.2
       '@fortawesome/free-solid-svg-icons': 6.7.2
+      '@oruga-ui/oruga-next': 0.10.5(vue@3.5.13(typescript@5.7.3))
+      '@oruga-ui/theme-oruga': 0.6.0(@oruga-ui/oruga-next@0.10.5(vue@3.5.13(typescript@5.7.3)))
       bulma: 1.0.3
       pnpm: 10.6.4
       vue: 3.5.13(typescript@5.7.3)
@@ -4116,6 +4147,8 @@ snapshots:
       - yaml
 
   vscode-uri@3.1.0: {}
+
+  vue-component-type-helpers@2.2.10: {}
 
   vue-eslint-parser@10.1.1(eslint@9.22.0(jiti@2.4.2)):
     dependencies:
