@@ -28,6 +28,10 @@ export async function getOne(id: number): Promise<User> {
   return api(`user/${id}`)
 }
 
+export function search(query: string, limit = 10, offset = 0) {
+  return api(`users/search/${query}?offset=${offset}&limit=${limit}`)
+}
+
 export async function updateUser(user: User): Promise<User> {
   return api(`users/${user.id}`).then(() => user)
 }
