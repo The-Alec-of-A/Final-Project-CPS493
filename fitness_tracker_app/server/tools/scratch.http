@@ -1,130 +1,118 @@
-############################
-#  ACTIVITIES CONTROLLERS  #
-############################
 
-### Get all activities
-GET http://localhost:8000/api/v1/activities/
-
-### Get activity by ID
-GET http://localhost:8000/api/v1/activities/1
-
-### Get acitivity by userID
-GET http://localhost:8000/api/v1/activities/user/3
-
-### Add a new activity
-POST http://localhost:8000/api/v1/activities/
-Content-Type: application/json
-
-{
-  "name": "Jumping Jacks",
-  "type": "cardio",
-  "duration": 30,
-  "caloriesBurned": 150,
-  "date": "2023-10-02T19:00:00Z",
-  "userId": 3
-}
-
-### Delete an activity
-DELETE http://localhost:8000/api/v1/activities/30
-
-### Update an activity
-PUT http://localhost:8000/api/v1/activities/31
-Content-Type: application/json
-
-{
-  "name": "Running",
-  "type": "cardio",
-  "duration": 45,
-  "caloriesBurned": 400,
-  "date": "2023-10-02T19:00:00Z",
-  "userId": 3
-}
-
+https://localhost:8000/user
 ###
-POST http://localhost:8000/api/v1/activities/seed
 
-############################
-#     USER CONTROLLERS     #
-############################
+GET http://localhost:8000/users/
+###
 
-### Get all users
-GET http://localhost:8000/api/v1/users/
+GET http://localhost:8000/users/6
+###
 
-### Get user by ID
-GET http://localhost:8000/api/v1/users/5
+GET http://localhost:10000/users/search/Gonzalez?limit=10&sort=first_Name&order=asc
+###
 
-### Add a new user
-POST http://localhost:8000/api/v1/users/
+Get http://localhost:10000/users/search/10
+###
+
+POST http://localhost:8000/users/
 Content-Type: application/json
 
 {
-  "firstName": "James",
-  "lastName": "Smith",
-  "email": "smithjames@example.com",
-  "age": 45,
-  "gender": "male",
-  "height": 178,
-  "weight": 80,
-  "icon": "@/assets/James Smith.svg",
-  "role": "user"
+    "first_Name": "Alec",
+    "last_Name": "Arza",
+    "age": 22
 }
+###
 
-### Update a user
-PUT http://localhost:8000/api/v1/users/5
+PATCH http://localhost:10000/users/10
 Content-Type: application/json
 
 {
-  "firstName": "James",
-  "lastName": "Patrick",
-  "email": "smithjames@example.com",
-  "age": 45,
-  "gender": "male",
-  "height": 178,
-  "weight": 80,
-  "icon": "@/assets/James Smith.svg",
-  "role": "admin"
+    "friends_Ids" : [7]
 }
+###
 
-### Delete a user
-DELETE http://localhost:8000/api/v1/users/5
+DELETE http://localhost:8000/users/33
+###
 
-############################
-#    ROUTES CONTROLLERS    #
-############################
+POST http://localhost:8000/users/seed
+###
 
-### Get all routes
-GET http://localhost:8000/api/v1/routes/
+PATCH  http://localhost:8000/users/7/addFriend/10
 
-### Get route by ID
-GET http://localhost:8000/api/v1/routes/6
+###Summaries test
 
-### Add a new route
-POST http://localhost:8000/api/v1/routes/
-Content-Type: application/json
+GET http://localhost:8000/summaries/
+###
 
-  {
-    "name": "Oregon Trail",
-    "distance": 15.2,
-    "duration": 320,
-    "difficulty": "Extreme",
-    "description": "A challenging trail through the Oregon wilderness.",
-    "startLocation": "Portland, OR",
-    "endLocation": "Bend, OR"       
-  }
+GET http://localhost:8000/summaries/10
+###
 
-### Update a route
-PUT http://localhost:8000/api/v1/routes/6
+GET http://localhost:8000/summaries/search/10?limit=10
+###
+
+POST http://localhost:8000/summaries/
 Content-Type: application/json
 
 {
-  "name": "Oregon Trail",
-  "distance": 30.5,
-  "duration": 320,
-  "difficulty": "Extreme",
-  "description": "A challenging trail through the Oregon wilderness.",
-  "startLocation": "Portland, OR",
-  "endLocation": "Bend, OR"
+    "user_id": 30,
+    "name": "Push ups",
+    "note": "nightly routine",
+    "type": "weight",
+    "sets": 10,
+    "reps": 5
 }
+###
 
-### Delete a route
-DELETE http://localhost:8000/api/v1/routes/6
+PATCH http://localhost:8000/summaries/20
+Content-Type: application/json
+
+{
+    "sets": 25
+}
+###
+
+DELETE http://localhost:10000/summaries/65
+###
+
+POST http://localhost:8000/summaries/seed
+
+### Posts test
+
+GET http://localhost:8000/posts/
+###
+
+GET http://localhost:8000/posts/10
+###
+
+GET http://localhost:8000/posts/search/4?
+###
+
+POST http://localhost:8000/posts/
+Content-Type: application/json
+
+{
+    "user_Id": 20,
+    "summary_Id": 11,
+    "content": "good time today",
+    "date": "2025-04-25"
+}
+###
+
+PATCH http://localhost:8000/posts/10
+Content-Type: application/json
+
+{
+    "date": "2026-05-05"
+}
+###
+
+DELETE http://localhost:8000/posts/52
+###
+
+POST http://localhost:8000/posts/seed
+###
+
+###Vue request tests
+
+GET http://localhost:8000/summaries/search/5?
