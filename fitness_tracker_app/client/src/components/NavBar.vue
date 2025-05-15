@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { OAutocomplete } from '@oruga-ui/oruga-next'
+import  { fetchUsers } from '@/models/typeahead'
 
 const usernames = ref(['John Smith', 'Jane Doe', 'Alec Arza'])
 const isDropdownActive = ref(false)
 const isActive = ref(false)
 const selectedUsername = ref('')
+const searchQuery = ref('')
+const options = ref<string[]>([])
 
 // Method to handle username selection
 const selectUsername = (username: string) => {
@@ -25,8 +29,10 @@ const closeDropdown = (event: Event) => {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   document.addEventListener('click', closeDropdown)
+  const users = await fetchUsers()
+  options.value = Array.isArray(users) ? users : []
 })
 
 onUnmounted(() => {
