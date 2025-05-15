@@ -1,0 +1,606 @@
+[
+    {
+      "id": 1,
+      "user_id": 5,
+      "name": "Morning Run",
+      "note": "Felt great, weather was cool.",
+      "type": "cardio",
+      "distance": 4.2,
+      "time": 28
+    },
+    {
+      "id": 2,
+      "user_id": 12,
+      "name": "Bench Press",
+      "note": "Increased weight from last week.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 10,
+      "weight": 185,
+      "time": 35
+    },
+    {
+      "id": 3,
+      "user_id": 7,
+      "name": "Cycling",
+      "note": "Did some sprints in between.",
+      "type": "cardio",
+      "distance": 12.5,
+      "time": 50
+    },
+    {
+      "id": 4,
+      "user_id": 3,
+      "name": "Deadlifts",
+      "note": "Felt strong, form is improving.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 6,
+      "weight": 225,
+      "time": 30
+    },
+    {
+      "id": 5,
+      "user_id": 19,
+      "name": "Swimming",
+      "note": "Good pace, no breaks.",
+      "type": "cardio",
+      "distance": 1.2,
+      "time": 40
+    },
+    {
+      "id": 6,
+      "user_id": 8,
+      "name": "Squats",
+      "note": "Challenging but completed all sets.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 8,
+      "weight": 200,
+      "time": 45
+    },
+    {
+      "id": 7,
+      "user_id": 16,
+      "name": "Elliptical",
+      "note": "Kept heart rate steady.",
+      "type": "cardio",
+      "distance": 3.6,
+      "time": 25
+    },
+    {
+      "id": 8,
+      "user_id": 10,
+      "name": "Overhead Press",
+      "note": "Struggled with the last rep.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 8,
+      "weight": 95,
+      "time": 20
+    },
+    {
+      "id": 9,
+      "user_id": 1,
+      "name": "Jogging",
+      "note": "Easy recovery session.",
+      "type": "cardio",
+      "distance": 2.0,
+      "time": 18
+    },
+    {
+      "id": 10,
+      "user_id": 14,
+      "name": "Lat Pulldown",
+      "note": "Felt good burn in the lats.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 12,
+      "weight": 120,
+      "time": 25
+    },
+    {
+      "id": 11,
+      "user_id": 6,
+      "name": "Shoulder Shrugs",
+      "note": "Felt great, weather was cool.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 6,
+      "weight": 120,
+      "time": 22
+    },
+    {
+      "id": 12,
+      "user_id": 18,
+      "name": "Morning Run",
+      "note": "Good pace, no breaks.",
+      "type": "cardio",
+      "distance": 13.5,
+      "time": 57
+    },
+    {
+      "id": 13,
+      "user_id": 6,
+      "name": "Tricep Dips",
+      "note": "Excellent energy today.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 12,
+      "weight": 135,
+      "time": 48
+    },
+    {
+      "id": 14,
+      "user_id": 2,
+      "name": "Rowing",
+      "note": "Challenging but completed all sets.",
+      "type": "cardio",
+      "distance": 11.7,
+      "time": 44
+    },
+    {
+      "id": 15,
+      "user_id": 11,
+      "name": "Barbell Rows",
+      "note": "Increased weight from last week.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 6,
+      "weight": 225,
+      "time": 43
+    },
+    {
+      "id": 16,
+      "user_id": 7,
+      "name": "Squats",
+      "note": "Felt strong, need more stretching.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 10,
+      "weight": 185,
+      "time": 17
+    },
+    {
+      "id": 17,
+      "user_id": 19,
+      "name": "Rowing",
+      "note": "Good pace, no breaks.",
+      "type": "cardio",
+      "distance": 2.5,
+      "time": 43
+    },
+    {
+      "id": 18,
+      "user_id": 6,
+      "name": "Evening Walk",
+      "note": "Excellent energy today.",
+      "type": "cardio",
+      "distance": 7.9,
+      "time": 42
+    },
+    {
+      "id": 19,
+      "user_id": 9,
+      "name": "Hiking",
+      "note": "Kept heart rate steady.",
+      "type": "cardio",
+      "distance": 3.6,
+      "time": 31
+    },
+    {
+      "id": 20,
+      "user_id": 15,
+      "name": "Treadmill",
+      "note": "Form is improving.",
+      "type": "cardio",
+      "distance": 7.2,
+      "time": 32
+    },
+    {
+      "id": 21,
+      "user_id": 14,
+      "name": "Evening Walk",
+      "note": "Kept heart rate steady.",
+      "type": "cardio",
+      "distance": 2.7,
+      "time": 16
+    },
+    {
+      "id": 22,
+      "user_id": 2,
+      "name": "Cycling",
+      "note": "Challenging but completed all sets.",
+      "type": "cardio",
+      "distance": 7.9,
+      "time": 52
+    },
+    {
+      "id": 23,
+      "user_id": 9,
+      "name": "Leg Press",
+      "note": "Challenging but completed all sets.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 10,
+      "weight": 135,
+      "time": 50
+    },
+    {
+      "id": 24,
+      "user_id": 19,
+      "name": "Hiking",
+      "note": "Good pace, no breaks.",
+      "type": "cardio",
+      "distance": 13.1,
+      "time": 35
+    },
+    {
+      "id": 25,
+      "user_id": 14,
+      "name": "Elliptical",
+      "note": "Felt strong, need more stretching.",
+      "type": "cardio",
+      "distance": 5.0,
+      "time": 42
+    },
+    {
+      "id": 26,
+      "user_id": 10,
+      "name": "Overhead Press",
+      "note": "Form is improving.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 8,
+      "weight": 225,
+      "time": 54
+    },
+    {
+      "id": 27,
+      "user_id": 18,
+      "name": "Lat Pulldown",
+      "note": "Form is improving.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 8,
+      "weight": 135,
+      "time": 39
+    },
+    {
+      "id": 28,
+      "user_id": 3,
+      "name": "Deadlifts",
+      "note": "Form is improving.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 12,
+      "weight": 225,
+      "time": 47
+    },
+    {
+      "id": 29,
+      "user_id": 17,
+      "name": "Cycling",
+      "note": "Struggled with the last rep.",
+      "type": "cardio",
+      "distance": 6.0,
+      "time": 18
+    },
+    {
+      "id": 30,
+      "user_id": 3,
+      "name": "Bench Press",
+      "note": "Felt strong, need more stretching.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 8,
+      "weight": 95,
+      "time": 15
+    },
+    {
+      "id": 31,
+      "user_id": 10,
+      "name": "Lat Pulldown",
+      "note": "Felt great, weather was cool.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 8,
+      "weight": 120,
+      "time": 53
+    },
+    {
+      "id": 32,
+      "user_id": 12,
+      "name": "Sprint Intervals",
+      "note": "Kept heart rate steady.",
+      "type": "cardio",
+      "distance": 5.0,
+      "time": 35
+    },
+    {
+      "id": 33,
+      "user_id": 16,
+      "name": "Bench Press",
+      "note": "Challenging but completed all sets.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 8,
+      "weight": 185,
+      "time": 22
+    },
+    {
+      "id": 34,
+      "user_id": 7,
+      "name": "Swimming",
+      "note": "Good pace, no breaks.",
+      "type": "cardio",
+      "distance": 7.5,
+      "time": 55
+    },
+    {
+      "id": 35,
+      "user_id": 16,
+      "name": "Jogging",
+      "note": "Good pace, no breaks.",
+      "type": "cardio",
+      "distance": 13.3,
+      "time": 58
+    },
+    {
+      "id": 36,
+      "user_id": 20,
+      "name": "Cycling",
+      "note": "Form is improving.",
+      "type": "cardio",
+      "distance": 9.6,
+      "time": 17
+    },
+    {
+      "id": 37,
+      "user_id": 7,
+      "name": "Overhead Press",
+      "note": "Increased weight from last week.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 6,
+      "weight": 95,
+      "time": 32
+    },
+    {
+      "id": 38,
+      "user_id": 9,
+      "name": "Overhead Press",
+      "note": "Felt strong, need more stretching.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 6,
+      "weight": 225,
+      "time": 39
+    },
+    {
+      "id": 39,
+      "user_id": 9,
+      "name": "Elliptical",
+      "note": "Felt strong, need more stretching.",
+      "type": "cardio",
+      "distance": 11.2,
+      "time": 21
+    },
+    {
+      "id": 40,
+      "user_id": 11,
+      "name": "Tricep Dips",
+      "note": "Felt strong, need more stretching.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 12,
+      "weight": 185,
+      "time": 30
+    },
+    {
+      "id": 41,
+      "user_id": 7,
+      "name": "Deadlifts",
+      "note": "Challenging but completed all sets.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 6,
+      "weight": 120,
+      "time": 15
+    },
+    {
+      "id": 42,
+      "user_id": 11,
+      "name": "Leg Press",
+      "note": "Increased weight from last week.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 6,
+      "weight": 135,
+      "time": 30
+    },
+    {
+      "id": 43,
+      "user_id": 4,
+      "name": "Rowing",
+      "note": "Felt strong, need more stretching.",
+      "type": "cardio",
+      "distance": 5.7,
+      "time": 24
+    },
+    {
+      "id": 44,
+      "user_id": 4,
+      "name": "Squats",
+      "note": "Challenging but completed all sets.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 10,
+      "weight": 120,
+      "time": 37
+    },
+    {
+      "id": 45,
+      "user_id": 4,
+      "name": "Bicep Curls",
+      "note": "Easy recovery session.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 12,
+      "weight": 225,
+      "time": 52
+    },
+    {
+      "id": 46,
+      "user_id": 16,
+      "name": "Bench Press",
+      "note": "Felt strong, need more stretching.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 8,
+      "weight": 135,
+      "time": 26
+    },
+    {
+      "id": 47,
+      "user_id": 18,
+      "name": "Shoulder Shrugs",
+      "note": "Kept heart rate steady.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 8,
+      "weight": 120,
+      "time": 48
+    },
+    {
+      "id": 48,
+      "user_id": 11,
+      "name": "Tricep Dips",
+      "note": "Felt strong, need more stretching.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 8,
+      "weight": 200,
+      "time": 40
+    },
+    {
+      "id": 49,
+      "user_id": 1,
+      "name": "Shoulder Shrugs",
+      "note": "Excellent energy today.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 8,
+      "weight": 95,
+      "time": 53
+    },
+    {
+      "id": 50,
+      "user_id": 16,
+      "name": "Evening Walk",
+      "note": "Challenging but completed all sets.",
+      "type": "cardio",
+      "distance": 8.2,
+      "time": 29
+    },
+    {
+      "id": 51,
+      "user_id": 5,
+      "name": "Shoulder Shrugs",
+      "note": "Struggled with the last rep.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 8,
+      "weight": 225,
+      "time": 29
+    },
+    {
+      "id": 52,
+      "user_id": 14,
+      "name": "Leg Press",
+      "note": "Felt great, weather was cool.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 12,
+      "weight": 225,
+      "time": 43
+    },
+    {
+      "id": 53,
+      "user_id": 17,
+      "name": "Morning Run",
+      "note": "Increased weight from last week.",
+      "type": "cardio",
+      "distance": 10.4,
+      "time": 60
+    },
+    {
+      "id": 54,
+      "user_id": 11,
+      "name": "Treadmill",
+      "note": "Struggled with the last rep.",
+      "type": "cardio",
+      "distance": 1.1,
+      "time": 17
+    },
+    {
+      "id": 55,
+      "user_id": 20,
+      "name": "Elliptical",
+      "note": "Easy recovery session.",
+      "type": "cardio",
+      "distance": 11.1,
+      "time": 15
+    },
+    {
+      "id": 56,
+      "user_id": 11,
+      "name": "Barbell Rows",
+      "note": "Excellent energy today.",
+      "type": "weight",
+      "sets": 5,
+      "reps": 8,
+      "weight": 120,
+      "time": 17
+    },
+    {
+      "id": 57,
+      "user_id": 5,
+      "name": "Bench Press",
+      "note": "Form is improving.",
+      "type": "weight",
+      "sets": 3,
+      "reps": 12,
+      "weight": 135,
+      "time": 46
+    },
+    {
+      "id": 58,
+      "user_id": 20,
+      "name": "Barbell Rows",
+      "note": "Increased weight from last week.",
+      "type": "weight",
+      "sets": 4,
+      "reps": 10,
+      "weight": 120,
+      "time": 21
+    },
+    {
+      "id": 59,
+      "user_id": 15,
+      "name": "Hiking",
+      "note": "Easy recovery session.",
+      "type": "cardio",
+      "distance": 2.4,
+      "time": 42
+    },
+    {
+      "id": 60,
+      "user_id": 5,
+      "name": "Cycling",
+      "note": "Challenging but completed all sets.",
+      "type": "cardio",
+      "distance": 1.5,
+      "time": 54
+    }
+  ]
