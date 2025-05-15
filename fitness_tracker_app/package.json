@@ -17,6 +17,7 @@
     "bulma": "^1.0.3",
     "client": "file:",
     "pnpm": "^10.6.4",
+    "supabase": "^2.22.12",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
