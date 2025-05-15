@@ -4,7 +4,7 @@ import { onMounted, ref} from 'vue'
 import WeightSummary from './WeightSummary.vue'
 import CardioSummary from './CardioSummary.vue'
 import SocialPost from './SocialPosts.vue'
-import { getPostByUser, type Post } from '@/models/posts'
+import { getPostByUser, type Post } from '@/models/userPosts'
 import { getSummaryByUser, type Summary } from '@/models/summary'
 import { currentUser } from '@/models/session'
 
@@ -70,7 +70,7 @@ function viewSummeries(userId: number){
 
 function deleteAccount(id:number) {
   for(let user of allUsers.value){
-    if(user.user_id == id){
+    if(user.id == id){
       allUsers.value.splice(allUsers.value.indexOf(user),1)
     }
   }
@@ -91,7 +91,7 @@ async function getUsersPosts(id:number): Promise<Post[]> {
 async function getUsersFriends(id:number): Promise<User[]> {
   let friends: User[] = []
   let current: User = await getOne(id)
-  for(let friendID of current.friends_Ids){
+  for(let friendID of current.friendsIds){
     const friend = await getOne(friendID)
 
     friends.push(friend)
@@ -117,13 +117,13 @@ async function getUsersSummaries(id:number): Promise<Summary[]> {
       </thead>
       <tbody>
         <tr v-for="user in allUsers">
-          <td>{{ user.first_Name + " " + user.last_Name }}</td>
+          <td>{{ user.firstName + " " + user.lastName }}</td>
           <td>
             <div class="buttons">
-              <button class="button is-danger" @click="deleteAccount(user.user_id as number)">delete</button>
-              <a class="button is-primary" @click="viewPosts(user.user_id as number)">View Posts</a>
-              <a class="button is-primary" @click="viewFriends(user.user_id as number)">View Friends</a>
-              <a class="button is-primary" @click="viewSummeries(user.user_id as number)">View Summaries</a>
+              <button class="button is-danger" @click="deleteAccount(user.id as number)">delete</button>
+              <a class="button is-primary" @click="viewPosts(user.id as number)">View Posts</a>
+              <a class="button is-primary" @click="viewFriends(user.id as number)">View Friends</a>
+              <a class="button is-primary" @click="viewSummeries(user.id as number)">View Summaries</a>
             </div>
           </td>
         </tr>
@@ -143,7 +143,7 @@ async function getUsersSummaries(id:number): Promise<Summary[]> {
       </thead>
       <tbody>
       <tr v-for="friend in userFriendList">
-        <td>{{ friend.first_Name + " " + friend.last_Name }}</td>
+        <td>{{ friend.firstName + " " + friend.lastName }}</td>
         <td>{{ friend }}</td>
       </tr>
       </tbody>
