@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "bulma": "^1.0.3",
     "client": "file:",
     "pnpm": "^10.6.4",
