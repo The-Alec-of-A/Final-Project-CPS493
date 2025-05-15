@@ -13,7 +13,7 @@ function remove(){
     <div class="card has-background-grey-dark">
       <div class="card-header has-background-grey-darker">
         <p class="card-header-title">Cardio Summary</p>
-        <button v-if="currentUser.user_id as number == props.data.user_id" class="delete is-right-aligned" @click="remove()"></button>
+        <button v-if="currentUser.id as number == props.data.user_id" class="delete is-right-aligned" @click="remove()"></button>
       </div>
       <div
         class="container has-text-centered is-title is-capitalized is-size-4 has-text-white has-text-weight-bold"

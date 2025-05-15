@@ -22,14 +22,16 @@ async function makeUser(){
         const birth_Date = new Date(values[6])
         invalidInput.value[0] = false
         const newUser: User = {
-            first_Name: (values[0]) as string,
-            last_Name: values[1] as string,
-            gender: values[2] as string,
-            age: values[3] as number,
-            email: values[4] as string,
-            phone: values[5] as string,
-            birth_Date: birth_Date,
-            friends_Ids: []
+            firstName: (values[0]) as string, // get from input
+            lastName: values[1] as string,
+            email: values[2] as string,
+            age: Number(values[3]),
+            gender: values[4] as string,
+            height: values[5] as number,
+            weight: values[6] as number,
+            image: values[7] as string,
+            friendsIds: [],
+
         }
         const response = await postUser(newUser)
         currentUser.value = response

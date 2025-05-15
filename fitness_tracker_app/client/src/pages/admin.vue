@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import AdminTable from '@/components/AdminStatus.vue'
+import AdminStatus from '@/components/AdminStatus.vue'
 </script>
 
 <template>
   <div>
     <table>
       <thead>
-        <AdminTable />
+        <AdminStatus />
       </thead>
     </table>
   </div>
