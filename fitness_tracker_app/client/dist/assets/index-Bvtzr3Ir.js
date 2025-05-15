@@ -1,0 +1,1 @@
+import{_ as t,c as o,o as s,a as n}from"./index-Dnpd4sqN.js";const r={},c={style:{padding:"25px"}};function a(d,e){return s(),o("div",c,e[0]||(e[0]=[n("h2",{style:{"font-size":"2em","font-weight":"bold"}},"Welcome to the Fitness Tracker App",-1)]))}const _=t(r,[["render",a]]);export{_ as default};

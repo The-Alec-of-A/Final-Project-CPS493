@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as c,a as r}from"./index-Dnpd4sqN.js";const t={},o={class:"search-container"};function n(_,e){return c(),a("div",o,e[0]||(e[0]=[r("input",{type:"text",class:"search-bar",placeholder:"Search person's name..."},null,-1)]))}const d=s(t,[["render",n],["__scopeId","data-v-51cc0570"]]);export{d as default};
