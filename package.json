@@ -17,6 +17,7 @@
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
         "@fortawesome/vue-fontawesome": "^3.0.8",
         "@oruga-ui/oruga": "^0.7.0",
+        "@oruga-ui/oruga-next": "^0.10.5",
         "@supabase/supabase-js": "^2.49.4",
         "@vitejs/plugin-vue-jsx": "^4.1.2",
         "@vueuse/core": "^13.1.0",
