@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "description": "",
+    "main": "index.js",
     "scripts": {
         "start": "node fitness_tracker_app/server/index.js",
-        "client": "npm start --prefix client",
         "dev": "concurrently \"npm run start\" \"npm run client\"",
         "build:client": "npm run build --prefix client",
         "build": "npm i --prefix client && npm run build:client"
@@ -16,7 +16,6 @@
         "@fortawesome/fontawesome-free": "^6.7.2",
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
         "@fortawesome/vue-fontawesome": "^3.0.8",
-        "@oruga-ui/oruga": "^0.7.0",
         "@oruga-ui/oruga-next": "^0.10.5",
         "@supabase/supabase-js": "^2.49.4",
         "@vitejs/plugin-vue-jsx": "^4.1.2",
@@ -27,6 +26,8 @@
         "dotenv": "^16.4.7",
         "es2020": "^1.1.9",
         "express": "^4.21.2",
+        "in-class": "file:",
+        "type-check": "^0.4.0",
         "vite-plugin-vue-devtools": "^7.7.6",
         "vue": "^3.5.13",
         "vue-router": "^4.5.1"
