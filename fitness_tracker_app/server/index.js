@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const userControler = require('./controllers/users')
 const summaryControler = require('./controllers/summaries')
 const postControler = require('./controllers/posts')
@@ -21,10 +22,14 @@ app.use((req, res, next) => {
     app.use(express.json())
 
 app
-    .use('/users',userControler)
-    .use('/summaries', summaryControler)
-    .use('/posts', postControler)
-    .use('/', express.static('dist'))
+    .use('/api/users',userControler)
+    .use('/api/summaries', summaryControler)
+    .use('/api/posts', postControler)
+    .use('/', express.static('../client/dist'))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+})
 
 app.use((err, req, res, next) => {
     console.error(err)
@@ -37,7 +42,6 @@ app.use((err, req, res, next) => {
     res.status(status).send(error)
 })
       
-
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}/`)
 })
