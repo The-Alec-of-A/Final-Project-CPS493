@@ -1,10 +1,2 @@
-@charset "UTF-8";
-
-@import 'bulma/css/bulma.css';
-@import '@fortawesome/fontawesome-free/css/all.css';
-@import 'buefy/dist/buefy.css';
-@import '@oruga-ui/theme-oruga/dist/oruga.css';
-
-.title:not(.is-spaced) + .subtitle {
-    margin-top: 0;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
+@import "https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css";
