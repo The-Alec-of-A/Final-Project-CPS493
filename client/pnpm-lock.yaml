@@ -3944,10 +3944,6 @@ snapshots:
     dependencies:
       tldts: 6.1.84
 
-  tr46@5.1.0:
-    dependencies:
-      punycode: 2.3.1
-
   ts-api-utils@2.0.1(typescript@5.7.3):
     dependencies:
       typescript: 5.7.3
